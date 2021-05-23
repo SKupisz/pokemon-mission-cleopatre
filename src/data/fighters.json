@@ -8,10 +8,10 @@
                 "sta": 95
             },
             "skills": [
-                ["Magia Gimikis", "user", "+10HP, +10Sta"], 
-                ["Panowie nowi?", "enemy", "-7HP"], 
-                ["Praktyczna rzecz!", "user", "+6HP"], 
-                ["Argument nie do podważenia", "enemy", "-12HP"]
+                ["Magia Gimikis", "user", "+10HP, +10Sta", 15], 
+                ["Panowie nowi?", "enemy", "-7HP", 8], 
+                ["Praktyczna rzecz!", "user", "+6HP", 4], 
+                ["Argument nie do podważenia", "enemy", "-12HP", 14]
             ]
         },
         {
@@ -19,13 +19,13 @@
             "photoClassName": "obelix",
             "stats": {
                 "hp": 140,
-                "sta": 100
+                "sta": 110
             },
             "skills": [
-                ["Kto tu jest gruby?", "enemy", "-2HP"], 
-                ["Dzik power", "user", "+8HP"], 
-                ["Dżem langusty", "enemy", "-20HP"], 
-                ["Utszebe", "enemy", "-11HP"]
+                ["Kto tu jest gruby?", "enemy", "-2HP", 4], 
+                ["Dzik power", "user", "+8HP", 8], 
+                ["Dżem langusty", "enemy", "-20HP", 23], 
+                ["Utszebe", "enemy", "-11HP", 13]
             ]
         },
         {
@@ -36,10 +36,10 @@
                 "sta": 90
             },
             "skills": [
-                ["Plaga egipska", "enemy", "-15Sta"], 
-                ["To kwestia zaplecza", "user", "+2HP, +5Sta"], 
-                ["Klasyczny sierpowy", "enemy", "-12HP, -10Sta"], 
-                ["Immakuruku eruczene", "user", "+14Sta"]
+                ["Plaga egipska", "enemy", "-15HP", 18], 
+                ["To kwestia zaplecza", "user", "+2HP, +5Sta", 4], 
+                ["Klasyczny sierpowy", "enemy", "-12HP, -10Sta", 20], 
+                ["Immakuruku eruczene", "user", "+14Sta", 20]
             ]
         },
         {
@@ -50,10 +50,10 @@
                 "sta": 120
             },
             "skills": [
-                ["Plan trzymiesięczny", "user", "+3HP, +4Sta"], 
-                ["Takie tam stożki", "enemy", "-4HP, -10Sta"], 
-                ["Si vic pacem", "user", "+6HP, +11Sta"], 
-                ["Zestawsuperplusie?", "user", "+14Sta"]
+                ["Plan trzymiesięczny", "user", "+3HP, +4Sta", 5], 
+                ["Takie tam stożki", "enemy", "-4HP, -10Sta", 10], 
+                ["Si vic pacem", "enemy", "-6HP", 7], 
+                ["Zestawsuperplusie?", "user", "+11Sta", 17]
             ]
         }
     ]

@@ -1,0 +1,42 @@
+.main-game{
+    .steering{
+        width: 40%;
+        height: 100%;
+        display: inline-block;
+        vertical-align: top;
+        .steering-turn{
+            width: calc(90% - 10px);
+            padding: 5px;
+            text-align: center;
+            font-size: 2.9em;
+            font-family: "Bebas Neue",sans-serif;
+        }
+        .skip-turn{
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            width: calc(80% - 40px);
+            text-align: center;
+            font-family: 'Amatic SC', cursive;
+            font-size: 1.9em;
+            background: rgba(182, 182, 182, 0.2);
+            cursor: pointer;
+            transition: filter 0.4s;
+        }
+        .skip-turn:hover{
+            filter: brightness(170%);
+        }
+    }
+    .first-gamer{
+        background: rgba(30, 144, 255,.95);
+    }
+    .second-gamer{
+        background: rgba(255,10,10,.9);
+    }
+    .skills-and-attacks{
+        width: calc(90% - 10px);
+        padding: 5px;
+        text-align: center;
+        margin-bottom: 4vh;
+    }
+}

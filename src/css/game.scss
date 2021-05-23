@@ -173,6 +173,10 @@
             .first-surrounding{
                 background: dodgerblue;
             }
+            .highlighted{
+                transition: all 0.2s;
+                filter: brightness(140%);
+            }
         }
         .first-container{
             float: left;
@@ -191,24 +195,5 @@
         display: inline-block;
         vertical-align: top;
         height: 100%;
-    }
-    .steering{
-        width: 40%;
-        height: 100%;
-        display: inline-block;
-        vertical-align: top;
-        .steering-turn{
-            width: calc(90% - 10px);
-            padding: 5px;
-            text-align: center;
-            font-size: 2.9em;
-            font-family: "Bebas Neue",sans-serif;
-        }
-    }
-    .first-gamer{
-        background: rgba(30, 144, 255,.95);
-    }
-    .second-gamer{
-        background: rgba(255,10,10,.9);
     }
 }

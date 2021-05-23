@@ -1,7 +1,7 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import ChoosingGameMode from "./helpers/choosingGameMode.jsx";
 import Main from "./Main.jsx";
 
 import 'swiper/swiper.scss';
@@ -14,7 +14,7 @@ export default class Menu extends React.Component{
             gameMode: 0, // 1 - single player, 2 - two players
             gamePhase: 0, // phases: 0 - first menu, 1 - first gamer choose, 2 - second gamer choose, 3 - AI choose, 4 - fight
             chosenCharacterFirst: 0,
-            chosenCharacterSecond: 2
+            chosenCharacterSecond: 0
         };
         this.fighters = require("../data/fighters.json");
         this.characters = this.fighters["fighters"];
@@ -48,16 +48,8 @@ export default class Menu extends React.Component{
         });
     }
     render(){
-        return this.state.gamePhase === 0 ? <div className="menu-container">
-            <header className="main-header block-center">Pokemon - misja Kleopatra</header>
-            <section className="menu block-center">
-                <button className="choosing-btn" onClick = {() => {this.chooseGameMode(1)}}>AI</button>
-                <button className="choosing-btn" onClick = {() => {this.chooseGameMode(2)}}>2 graczy</button>
-                <Link to = "/about">
-                    <button className="credits-btn">Credits</button>
-                </Link>
-            </section>
-        </div> : (this.state.gamePhase === 1 || this.state.gamePhase === 2)? <div className="menu-container next-phase">
+        return this.state.gamePhase === 0 ? <ChoosingGameMode chooseGameMode = {this.chooseGameMode}/> 
+        : (this.state.gamePhase === 1 || this.state.gamePhase === 2)? <div className="menu-container next-phase">
             <header className="main-header block-center">{this.state.gameMode === 1 ? "Wybierz postać" : "Wybierz postać - gracz "+this.state.gamePhase}</header>
             <section className="gameOptions-characters block-center">
                 <Swiper spaceBetween={10}
@@ -80,9 +72,7 @@ export default class Menu extends React.Component{
                 </Swiper>
                 
             </section>
-        </div> : this.state.gamePhase === 4 ? <Main
-            gameType = {this.state.gameMode}
-            firstGamer = {this.state.chosenCharacterFirst}
+        </div> : this.state.gamePhase === 4 ? <Main gameType = {this.state.gameMode} firstGamer = {this.state.chosenCharacterFirst}
             secondGamer = {this.state.chosenCharacterSecond}/> : ""
     }
 }

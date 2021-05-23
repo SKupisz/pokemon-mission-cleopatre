@@ -1,20 +1,15 @@
 import React from "react";
 
+import FightImage from "./helpers/fightImages.jsx";
+import SkillsRendering from "./helpers/skillsRendering.jsx";
+
 export default class Main extends React.Component{
     constructor(props){
         super(props);
 
-        this.state = {
-            isLoaded: -1
-        };
-
-        console.log(this.props.firstGamer);
-
         this.fightersGeneralData = require("../data/fighters.json");
 
-    }
-    componentDidMount(){
-        this.setState({
+        this.state = {
             secondGamerStatus: {
                 currHp: this.fightersGeneralData["fighters"][this.props.secondGamer]["stats"]["hp"],
                 maxHp: this.fightersGeneralData["fighters"][this.props.secondGamer]["stats"]["hp"],
@@ -27,6 +22,38 @@ export default class Main extends React.Component{
                 currSta: this.fightersGeneralData["fighters"][this.props.firstGamer]["stats"]["sta"],
                 maxSta: this.fightersGeneralData["fighters"][this.props.firstGamer]["stats"]["sta"]
             },
+            firstGamerAttacks: this.fightersGeneralData["fighters"][this.props.firstGamer]["skills"],
+            secondGamerAttacks: this.fightersGeneralData["fighters"][this.props.secondGamer]["skills"],
+            isLoaded: -1,
+            currentTurn: 1
+        };
+
+        this.nextTurn = this.nextTurn.bind(this);
+
+    }
+    nextTurn(hasDoneSomething){
+        if(hasDoneSomething === false){
+            if(this.state.currentTurn === 1){
+                let operand = this.state.firstGamerStatus;
+                if(operand["currSta"]+1 <= operand["maxSta"]) operand["currSta"]++;
+                this.setState({
+                   firstGamerStatus: operand
+                }, () => {});
+            }
+            else{
+                let operand = this.state.secondGamerStatus;
+                if(operand["currSta"]+1 <= operand["maxSta"]) operand["currSta"]++;
+                this.setState({
+                    secondGamerStatus: operand
+                }, () => {});
+            }
+        }
+        this.setState({
+            currentTurn: this.state.currentTurn*(-1)
+        }, () => {});
+    }
+    componentDidMount(){
+        this.setState({
             isLoaded: 1
         }, () => {});
     }
@@ -52,20 +79,16 @@ export default class Main extends React.Component{
                             </div>
                         </div>
 
-                        <div className="image-container">
-                            <div className="image-surrounding second-surrounding block-center">
-                                <div className={"image block-center "+this.fightersGeneralData["fighters"][this.props.secondGamer]["photoClassName"]}></div>
-                            </div>
-                        </div>
+                        <FightImage 
+                            surroundingClasses = {this.state.currentTurn === -1 ? "image-surrounding second-surrounding block-center highlighted" : "image-surrounding second-surrounding block-center"}
+                            imageClasses = {"image block-center "+this.fightersGeneralData["fighters"][this.props.secondGamer]["photoClassName"]}/>
 
                     </div>
                     <div className="first-gamer-level gamer-level">
 
-                        <div className="image-container first-container">
-                            <div className="image-surrounding first-surrounding block-center">
-                                <div className={"image block-center "+this.fightersGeneralData["fighters"][this.props.firstGamer]["photoClassName"]}></div>
-                            </div>
-                        </div>
+                        <FightImage 
+                            surroundingClasses = {this.state.currentTurn === 1 ? "image-surrounding first-surrounding block-center highlighted" : "image-surrounding first-surrounding block-center"}
+                            imageClasses = {"image block-center "+this.fightersGeneralData["fighters"][this.props.firstGamer]["photoClassName"]}/>
 
                         <div className="stats first-stats">
                             <div className="stats-elem health block-center">❤ {this.state.firstGamerStatus["currHp"]+" / "+this.state.firstGamerStatus["maxHp"]}</div>
@@ -78,7 +101,11 @@ export default class Main extends React.Component{
                     </div>
                 </div>
                 <div className="steering first-gamer">
-                    <header className = "steering-turn block-center">Tura gracza 1</header>
+                    <header className = "steering-turn block-center">Tura gracza {this.state.currentTurn === 1 ? 1 : 2}</header>
+                    <section className="skills-and-attacks block-center">
+                        {this.state.currentTurn === 1 ? <SkillsRendering skillsToMap = {this.state.firstGamerAttacks}/>: <SkillsRendering skillsToMap = {this.state.secondGamerAttacks}/>}
+                    </section>
+                    <button className = "skip-turn block-center" onClick = {() => {this.nextTurn(false)}}>Pomiń</button>
                 </div>
             </section>
         </div> : "";
