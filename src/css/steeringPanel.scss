@@ -38,5 +38,51 @@
         padding: 5px;
         text-align: center;
         margin-bottom: 4vh;
+        .skill-attack{
+            width: calc(95% - 10px);
+            padding: 5px;
+            border: 1px solid #333;
+            border-radius: 10px;
+            margin-bottom: 7px;
+            font-family: 'Amatic SC', cursive;
+            background: rgb(219, 255, 171);
+            cursor: pointer;
+            transition: filter 0.4s;
+            .skill-name{
+                width: calc(100% - 10px);
+                padding: 5px;
+                text-align: center;
+                font-size: 1.8em;
+                margin-bottom: 7px;
+            }
+            .describe-attack{
+                width: calc(90% - 10px);
+                padding: 5px;
+                text-align: center;
+            }
+            .describe-elem{
+                display: inline-block;
+                vertical-align: top;
+                width: calc(33% - 12px);
+                margin: 6px;
+                font-size: 1.2em;
+            }
+            .healing{
+                color: green;
+            }
+            .attack{
+                color: red;
+            }
+        }
+        .skill-attack:hover{
+            filter: brightness(120%);
+        }
+        .unaviable{
+            filter: brightness(70%);
+            background: rgb(255, 104, 104);
+        }
+        .unaviable:hover{
+            filter: brightness(70%);
+        }
     }
 }

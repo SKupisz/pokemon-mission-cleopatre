@@ -1,8 +1,12 @@
 import React from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
+import ReactHowler from 'react-howler';
 
 import ChoosingGameMode from "./helpers/choosingGameMode.jsx";
 import Main from "./Main.jsx";
+
+import snoopdogg from "../music/asterix_i_obelix.mp3";
+import fighting from "../music/krwawobrody_theme.mp3";
 
 import 'swiper/swiper.scss';
 
@@ -13,13 +17,18 @@ export default class Menu extends React.Component{
         this.state = {
             gameMode: 0, // 1 - single player, 2 - two players
             gamePhase: 0, // phases: 0 - first menu, 1 - first gamer choose, 2 - second gamer choose, 3 - AI choose, 4 - fight
+            aiOruser: 0,
             chosenCharacterFirst: 0,
-            chosenCharacterSecond: 0
+            chosenCharacterSecond: 0,
+            currentMusicVolume: 1.0,
+            musicResource: snoopdogg
         };
         this.fighters = require("../data/fighters.json");
         this.characters = this.fighters["fighters"];
         this.chooseGameMode = this.chooseGameMode.bind(this);
         this.chooseCharacter = this.chooseCharacter.bind(this);
+        this.erasingTheVolume = this.erasingTheVolume.bind(this);
+        this.goBack = this.goBack.bind(this);
     }
     chooseGameMode(option){
         this.setState({
@@ -37,18 +46,71 @@ export default class Menu extends React.Component{
         else{
             objectToPassToState["chosenCharacterSecond"] = option;
         }
-        
         this.setState(objectToPassToState, () => {
             if(this.state.gamePhase === 3){
                 this.setState({
                     chosenCharacterSecond: Math.floor(Math.random()*this.characters.length),
-                    gamePhase: 4
-                }, () => {});
+                    gamePhase: 4,
+                    aiOruser: 1
+                }, () => {
+                    if(this.state.gamePhase === 4){
+                        this.erasingTheVolume(1.0);
+                    }
+                });
+            }
+            if(this.state.gamePhase === 4){
+                for(let i = 1.0; i >=0.0; i-=0.1){
+                    this.erasingTheVolume(1.0);
+                }
             }
         });
     }
+    erasingTheVolume(i){
+        if(i >= 0){
+            this.setState({
+                currentMusicVolume: i
+            }, () =>{
+                setTimeout(() => {
+                    this.erasingTheVolume(i-0.1);
+                }, 250);
+            });
+        }
+        else{
+            this.setState({
+                currentMusicVolume: 0.8,
+                musicResource: fighting
+            }, () => {});
+        }
+    }
+    goBack(where){
+        if(where === 1){
+            this.setState({
+                gameMode: this.state.aiOruser === 1 ? 1 : 2,
+                gamePhase: 1,
+                chosenCharacterFirst: 0,
+                chosenCharacterSecond: 0,
+                currentMusicVolume: 1.0,
+                musicResource: snoopdogg
+            }, () => {});
+        }
+        else{
+            this.setState({
+                gameMode: 0,
+                gamePhase: 0,
+                chosenCharacterFirst: 0,
+                chosenCharacterSecond: 0,
+                currentMusicVolume: 1.0,
+                musicResource: snoopdogg
+            }, () => {});
+        }
+    }
     render(){
-        return this.state.gamePhase === 0 ? <ChoosingGameMode chooseGameMode = {this.chooseGameMode}/> 
+        return <div> 
+            <ReactHowler
+        src={this.state.musicResource}
+        volume = {this.state.currentMusicVolume}
+      />
+            {this.state.gamePhase === 0 ? <ChoosingGameMode chooseGameMode = {this.chooseGameMode}/> 
         : (this.state.gamePhase === 1 || this.state.gamePhase === 2)? <div className="menu-container next-phase">
             <header className="main-header block-center">{this.state.gameMode === 1 ? "Wybierz postać" : "Wybierz postać - gracz "+this.state.gamePhase}</header>
             <section className="gameOptions-characters block-center">
@@ -73,6 +135,7 @@ export default class Menu extends React.Component{
                 
             </section>
         </div> : this.state.gamePhase === 4 ? <Main gameType = {this.state.gameMode} firstGamer = {this.state.chosenCharacterFirst}
-            secondGamer = {this.state.chosenCharacterSecond}/> : ""
+            secondGamer = {this.state.chosenCharacterSecond} goBack = {this.goBack}/> : ""}</div>
     }
 }
+/*                  > */
