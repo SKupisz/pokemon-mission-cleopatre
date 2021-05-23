@@ -1,0 +1,51 @@
+body{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+.block-center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.menu-container{
+    width: 100%;
+    min-height: 100vh;
+    background: url("../img/background2.jpg");
+    background-size: cover;
+    .main-header{
+        width: calc(90% - 20px);
+        padding: 10px;
+        text-align: center;
+        font-size: 2.9em;
+        font-family: "Bebas Neue",sans-serif;
+        color: white;
+        letter-spacing: 0.04em;
+        margin-bottom: 20vh;
+    }
+    .menu{
+        width: calc(90% - 10px);
+        padding: 5px;
+        text-align: center;
+        .choosing-btn, .credits-btn{
+            width: calc(40% - 20px);
+            display: inline-block;
+            border-radius: 10px;
+            padding: 10px;
+            border: none;
+            font-size: 1.9em;
+            font-family: "Pattaya";
+            height: 20vh;
+            margin: 6px;
+            cursor: pointer;
+            transition: filter 0.4s;
+            background: rgba(255,255,255,.8);
+        }
+        .choosing-btn:hover, .credits-btn:hover{
+            filter: brightness(70%);
+        }
+        .credits-btn{
+            width: calc(80% - 32px);
+        }
+    }
+}

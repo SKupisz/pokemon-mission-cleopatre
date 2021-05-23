@@ -1,0 +1,23 @@
+.main-section{
+    width: calc(60% - 10px);
+    padding: 20px 5px;
+    text-align: center;
+    background-color: rgba(0,0,0,.8);
+    border-radius: 10px;
+    a{
+        text-decoration: none;
+    }
+    .info-wrapper{
+        width: calc(90% - 20px);
+        padding: 10px;
+        font-family: "Pattaya",sans-serif;
+        color: white;
+    }
+    .link{
+        transition: filter 0.4s;
+        margin-top: 10px;
+    }
+    .link:hover{
+        filter: brightness(50%);
+    }
+}

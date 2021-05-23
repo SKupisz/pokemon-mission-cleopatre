@@ -1,0 +1,106 @@
+.next-phase{
+    .main-header{
+        margin-bottom: 5vh;
+    }
+}
+.asterix{
+    background: url("../img/asterix.jpg");
+    background-size: cover;
+}
+.obelix{
+    background: url("../img/obelix.jpg");
+    background-size: cover;
+}
+.marnypopis{
+    background: url("../img/marnypopis.jpg");
+    background-position-x: 40%;
+    background-size: cover;
+}
+.cezar{
+    background: url("../img/cezar.jpg");
+    background-size: cover;
+}
+.gameOptions-characters{
+    width: calc(35% - 20px);
+    padding: 10px;
+    text-align: center;
+    .gameOption-widget{
+        width: 90%;
+        height: 70vh;
+        background: rgba(220,220,220,.9);
+        display: inline-block;
+        text-align: center;
+        border-radius: 10px;
+        margin: 5px;
+        cursor: pointer;
+        transition: filter 0.4s;
+        vertical-align: top;
+        .widget-header{
+            width: calc(95% - 10px);
+            padding: 10px 5px;
+            text-align: center;
+            font-size: 1.9em;
+            font-family: "Bebas Neue",sans-serif;
+            position: relative;
+            top: 20px;
+            margin-bottom: 3vh;
+        }
+        .photo-wrapper{
+            width: 15vh;
+            height: 15vh;
+            border-radius: 50%;
+            margin-bottom: 4vh;
+        }
+        .stats-wrapper{
+            width: calc(90% - 20px);
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 2vh;
+            .stats{
+                display: inline-block;
+                vertical-align: top;
+                margin: 0px 20px;
+                font-family: "Bebas Neue",sans-serif;
+                letter-spacing: 0.03em;
+            }
+            .health{
+                color: rgba(255,0,0,.9);
+            }
+            .stamina{
+                color: purple;
+            }
+        }
+        .character-attacks{
+            width: calc(95% - 10px);
+            padding: 5px;
+            text-align: center;
+            .attack-wrapper{
+                width: calc(100% - 10px);
+                padding: 5px;
+                border: 1px solid #aaa;
+                border-radius: 10px;
+                margin-bottom: 1vh;
+                font-family: "Pattaya",sans-serif;
+                .attack-skills{
+                    display: inline-block;
+                    text-align: center;
+                    vertical-align: middle;
+                }
+                .attack-name{
+                    width: 40%;
+                    font-size: 0.9em;
+                }
+                .attack-specifics{
+                    width: 50%;
+                    font-size: 0.8em;
+                }
+                .attack-forWho{
+                    font-size: 0.7em;
+                }
+            }
+        }
+    }
+    .gameOption-widget:hover{
+        filter: brightness(70%);
+    }
+}

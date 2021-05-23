@@ -1,0 +1,60 @@
+{
+    "fighters":  [
+        {
+            "name": "Asterix",
+            "photoClassName": "asterix",
+            "stats": {
+                "hp": 115,
+                "sta": 95
+            },
+            "skills": [
+                ["Magia Gimikis", "user", "+10HP, +10Sta"], 
+                ["Panowie nowi?", "enemy", "-7HP"], 
+                ["Praktyczna rzecz!", "user", "+6HP"], 
+                ["Argument nie do podważenia", "enemy", "-12HP"]
+            ]
+        },
+        {
+            "name": "Obelix",
+            "photoClassName": "obelix",
+            "stats": {
+                "hp": 140,
+                "sta": 100
+            },
+            "skills": [
+                ["Kto tu jest gruby?", "enemy", "-2HP"], 
+                ["Dzik power", "user", "+8HP"], 
+                ["Dżem langusty", "enemy", "-20HP"], 
+                ["Utszebe", "enemy", "-11HP"]
+            ]
+        },
+        {
+            "name": "Marnypopis",
+            "photoClassName": "marnypopis",
+            "stats": {
+                "hp": 120,
+                "sta": 90
+            },
+            "skills": [
+                ["Plaga egipska", "enemy", "-15Sta"], 
+                ["To kwestia zaplecza", "user", "+2HP, +5Sta"], 
+                ["Klasyczny sierpowy", "enemy", "-12HP, -10Sta"], 
+                ["Immakuruku eruczene", "user", "+14Sta"]
+            ]
+        },
+        {
+            "name": "Cezar",
+            "photoClassName": "cezar",
+            "stats": {
+                "hp": 110,
+                "sta": 120
+            },
+            "skills": [
+                ["Plan trzymiesięczny", "user", "+3HP, +4Sta"], 
+                ["Takie tam stożki", "enemy", "-4HP, -10Sta"], 
+                ["Si vic pacem", "user", "+6HP, +11Sta"], 
+                ["Zestawsuperplusie?", "user", "+14Sta"]
+            ]
+        }
+    ]
+}

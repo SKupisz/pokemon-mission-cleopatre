@@ -1,0 +1,214 @@
+@keyframes gameIntro {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 50%;
+    }
+}
+@keyframes introAnimation {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        visibility: hidden;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+    }
+}
+@keyframes gameGoingOn {
+    0%{
+        visibility: visible;
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+        visibility: visible;
+    }
+}
+.game-container{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background: url("../img/fightBackground.jpg");
+    background-size: cover;
+    background-position-x: 80%;
+    text-align: center;
+    .game-header{
+        width: 80%;
+        text-align: center;
+        position: absolute;
+        top: 30%;
+        left: 1%;
+        font-size: 9.9em;
+        font-family: 'Amatic SC', cursive;
+        letter-spacing: 0.09em;
+        color: rgba(255,10,10,.9);
+        background: black;
+        animation-duration: 1.5s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+    .first-character{
+        /*animation-name: introMove;
+        transform: rotate(-6deg);*/
+    }
+    .second-character{
+        opacity: 0;
+        /*animation-name: introMoveSecond;
+        top: 10%;
+        animation-delay: 1.5s;
+        transform: rotate(6deg);*/
+    }
+    .fight{
+        transform: none;
+        left: auto;
+    }
+    .gamers-presenting-container{
+        width: 100%;
+        height: 100%;
+        animation: introAnimation;
+        animation-duration: 0.5s;
+        animation-delay: 3s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: 1;
+        .gamers-images{
+            width: 0%;
+            height: 100%;
+            vertical-align: top;
+            animation-duration: 0.5s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+            animation-name: gameIntro;
+            float: left;
+            animation-delay: 0.5s;
+            box-shadow: inset 1px 1px 100px #111;
+            overflow-x: hidden;
+            .character-name{
+                width: calc(90% - 20px);
+                padding: 10px;
+                text-align: center;
+                font-size: 5.5em;
+                font-family: 'Amatic SC', cursive;
+                position: relative;
+                top: 40%;
+                color: dodgerblue;
+            }
+            .second-name{
+                color: red;
+            }
+        }
+        .second-fighter{
+            animation-delay: 1.5s;
+            float: right;
+        }
+    }
+}
+.main-game{
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    animation-name: gameGoingOn;
+    animation-duration: 0.5s;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    .gamer-level{
+        width: calc(100% - 20px);
+        height: 50%;
+        padding: 10px;
+        .stats{
+            float: left;
+            margin-left: 10%;
+            width: calc(30% - 20px);
+            border-radius: 10px;
+            position: relative;
+            top: 12%;
+            padding: 10px;
+            background: rgba(255,255,255,.5);
+            .stats-elem{
+                width: calc(90% - 10px);
+                padding: 5px;
+                text-align: center;
+                font-family: "Bebas Neue",sans-serif;
+                font-size: 1.9em;
+            }
+            .health{
+                color: red;
+            }
+            .stamina{
+                color: purple;
+            }
+        }
+        .first-stats{
+            float: right;
+            margin-left: auto;
+            margin-right: 10%;
+        }
+        .image-container{
+            float: right;
+            margin-right: 10%;
+            width: 30%;
+            text-align: center;
+            position: relative;
+            top: 10%;
+            .image{
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                position: relative;
+                top: 5px;
+            }
+            .image-surrounding{
+                width: 160px;
+                height: 160px;
+                border-radius: 50%;
+            }
+            .second-surrounding{
+                background: red;
+            }
+            .first-surrounding{
+                background: dodgerblue;
+            }
+        }
+        .first-container{
+            float: left;
+            margin-right: auto;
+            margin-left: 10%;
+        }
+    }
+    .second-gamer-level{
+        background: rgba(48, 48, 48, 0.2);
+    }
+    .first-gamer-level{
+        background: rgba(24, 24, 24, 0.2);
+    }
+    .game-characters{
+        width: 60%;
+        display: inline-block;
+        vertical-align: top;
+        height: 100%;
+    }
+    .steering{
+        width: 40%;
+        height: 100%;
+        display: inline-block;
+        vertical-align: top;
+        .steering-turn{
+            width: calc(90% - 10px);
+            padding: 5px;
+            text-align: center;
+            font-size: 2.9em;
+            font-family: "Bebas Neue",sans-serif;
+        }
+    }
+    .first-gamer{
+        background: rgba(30, 144, 255,.95);
+    }
+    .second-gamer{
+        background: rgba(255,10,10,.9);
+    }
+}
