@@ -105,11 +105,10 @@ export default class Menu extends React.Component{
         }
     }
     render(){
-        return <div> 
-                              <ReactHowler
+        return <div> <ReactHowler
         src={this.state.musicResource}
         volume = {this.state.currentMusicVolume}
-      />    
+      /> 
             {this.state.gamePhase === 0 ? <ChoosingGameMode chooseGameMode = {this.chooseGameMode}/> 
         : (this.state.gamePhase === 1 || this.state.gamePhase === 2)? <div className="menu-container next-phase">
             <header className="main-header block-center">{this.state.gameMode === 1 ? "Wybierz postać" : "Wybierz postać - gracz "+this.state.gamePhase}</header>

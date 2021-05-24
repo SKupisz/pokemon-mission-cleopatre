@@ -85,7 +85,7 @@ export default class Main extends React.Component{
     manageAIturn(){
         let aiBase = this.state.secondGamerStatus, aiAttacks = this.state.secondGamerAttacks;
         let playerBase = this.state.firstGamerStatus;
-        let flag = false, helper;
+        let flag = false, helper, ifDoingNothing = true;
         if(aiBase["currHp"]/aiBase["maxHp"] <= 0.4){
             for(let i = 0 ; i < aiAttacks.length; i++){
                 if(aiAttacks[i][1] === "user" && aiAttacks[i][3] <= aiBase["specialAttackPoints"]){
@@ -106,24 +106,39 @@ export default class Main extends React.Component{
                 }
             }
         }
-        else if(aiBase["currHp"]/aiBase["maxHp"] > 0.4 || flag === true){
+        if(aiBase["currHp"]/aiBase["maxHp"] > 0.4 || flag === false){
+            let mostPowerfulAttackInd = -1, maxPower = 0, currentPower = 0;
             for(let i = 0 ; i < aiAttacks.length; i++){
                 if(aiAttacks[i][1] === "enemy" && aiAttacks[i][3] <= aiBase["currSta"]){
                     helper = aiAttacks[i][2].split(", ");
+                    currentPower = 0;
                     for(let j = 0 ; j < helper.length; j++){
                         let getTheNumberOfHelping = this.getTheNumberFromTheSkill(helper[j]);
-                        if(helper[j][helper[j].length - 1] === "a") {
-                            playerBase["currSta"]-=getTheNumberOfHelping;
-                            if(playerBase["currSta"] < 0) playerBase["currSta"] = 0;
-                        }
-                        else{
-                            playerBase["currHp"]-=getTheNumberOfHelping;
-                            if(playerBase["currHp"] < 0) playerBase["currHp"] = 0; 
-                        }
+                        currentPower+=getTheNumberOfHelping;
                     }
-                    aiBase["currSta"]-=aiAttacks[i][3];
-                    break;
+                    if(currentPower > maxPower){
+                        maxPower = currentPower;
+                        mostPowerfulAttackInd = i;
+                    }
                 }
+            }
+            if(mostPowerfulAttackInd !== -1){
+                helper = aiAttacks[mostPowerfulAttackInd][2].split(", ");
+                for(let j = 0 ; j < helper.length; j++){
+                    let getTheNumberOfHelping = this.getTheNumberFromTheSkill(helper[j]);
+                    if(helper[j][helper[j].length - 1] === "a") {
+                        playerBase["currSta"]-=getTheNumberOfHelping;
+                        if(playerBase["currSta"] < 0) playerBase["currSta"] = 0;
+                    }
+                    else{
+                        playerBase["currHp"]-=getTheNumberOfHelping;
+                        if(playerBase["currHp"] < 0) playerBase["currHp"] = 0; 
+                    }
+                }
+                aiBase["currSta"]-=aiAttacks[mostPowerfulAttackInd][3];
+            }
+            else{
+                ifDoingNothing = false;
             }
         }
         setTimeout(() => {
@@ -131,7 +146,7 @@ export default class Main extends React.Component{
                 secondGamerStatus: aiBase,
                 firstGamerStatus: playerBase
             }, () => {
-                this.nextTurn(false);
+                this.nextTurn(ifDoingNothing);
             });
         },500);
     }
