@@ -36,10 +36,10 @@
                 "sta": 90
             },
             "skills": [
-                ["Plaga egipska", "enemy", "-15HP", 18], 
+                ["Plaga egipska", "enemy", "-15HP", 16], 
                 ["To kwestia zaplecza", "user", "+2HP, +5Sta", 4], 
-                ["Klasyczny sierpowy", "enemy", "-12HP, -10Sta", 20], 
-                ["Immakuruku eruczene", "user", "+14Sta", 20]
+                ["Klasyczny sierpowy", "enemy", "-18HP", 18], 
+                ["Immakuruku eruczene", "user", "+10Sta", 20]
             ]
         },
         {
@@ -51,9 +51,9 @@
             },
             "skills": [
                 ["Plan trzymiesięczny", "user", "+3HP, +4Sta", 5], 
-                ["Takie tam stożki", "enemy", "-4HP, -10Sta", 10], 
+                ["Takie tam stożki", "enemy", "-14HP", 10], 
                 ["Si vic pacem", "enemy", "-6HP", 7], 
-                ["Zestawsuperplusie?", "user", "+11Sta", 17]
+                ["Zestawsuperplusie?", "user", "+8Sta", 17]
             ]
         }
     ]

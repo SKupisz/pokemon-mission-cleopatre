@@ -10,18 +10,20 @@ export default class Main extends React.Component{
 
         this.fightersGeneralData = require("../data/fighters.json");
 
-        this.state = {
+        this.defaultSet = {
             secondGamerStatus: {
                 currHp: this.fightersGeneralData["fighters"][this.props.secondGamer]["stats"]["hp"],
                 maxHp: this.fightersGeneralData["fighters"][this.props.secondGamer]["stats"]["hp"],
                 currSta: this.fightersGeneralData["fighters"][this.props.secondGamer]["stats"]["sta"],
-                maxSta: this.fightersGeneralData["fighters"][this.props.secondGamer]["stats"]["sta"]
+                maxSta: this.fightersGeneralData["fighters"][this.props.secondGamer]["stats"]["sta"],
+                specialAttackPoints: 0
             },
             firstGamerStatus: {
                 currHp: this.fightersGeneralData["fighters"][this.props.firstGamer]["stats"]["hp"],
                 maxHp: this.fightersGeneralData["fighters"][this.props.firstGamer]["stats"]["hp"],
                 currSta: this.fightersGeneralData["fighters"][this.props.firstGamer]["stats"]["sta"],
-                maxSta: this.fightersGeneralData["fighters"][this.props.firstGamer]["stats"]["sta"]
+                maxSta: this.fightersGeneralData["fighters"][this.props.firstGamer]["stats"]["sta"],
+                specialAttackPoints: 0
             },
             firstGamerAttacks: this.fightersGeneralData["fighters"][this.props.firstGamer]["skills"],
             secondGamerAttacks: this.fightersGeneralData["fighters"][this.props.secondGamer]["skills"],
@@ -30,11 +32,20 @@ export default class Main extends React.Component{
             isEnded: 0
         };
 
+        this.state = this.defaultSet;
+
         this.handleTheAttack = this.handleTheAttack.bind(this);
+        this.getTheNumberFromTheSkill = this.getTheNumberFromTheSkill.bind(this);
         this.manageAIturn = this.manageAIturn.bind(this);
         this.nextTurn = this.nextTurn.bind(this);
         this.headingBack = this.headingBack.bind(this);
 
+    }
+    getTheNumberFromTheSkill(text){
+        let getTheNumber = text.substring(1,3);
+        if(isNaN(Number(getTheNumber)) === true) {getTheNumber = getTheNumber.substring(0,1);}
+        getTheNumber = Number(getTheNumber);
+        return getTheNumber;
     }
     nextTurn(hasDoneSomething){
         if(hasDoneSomething === false){
@@ -72,8 +83,56 @@ export default class Main extends React.Component{
         });
     }
     manageAIturn(){
+        let aiBase = this.state.secondGamerStatus, aiAttacks = this.state.secondGamerAttacks;
+        let playerBase = this.state.firstGamerStatus;
+        let flag = false, helper;
+        if(aiBase["currHp"]/aiBase["maxHp"] <= 0.4){
+            for(let i = 0 ; i < aiAttacks.length; i++){
+                if(aiAttacks[i][1] === "user" && aiAttacks[i][3] <= aiBase["specialAttackPoints"]){
+                    flag = true;
+                    helper = aiAttacks[i][2].split(", ");
+                    for(let j = 0 ; j < helper.length; j++){
+                        let getTheNumberOfHelping = this.getTheNumberFromTheSkill(helper[j]);
+                        if(helper[j][helper[j].length - 1] === "a") {
+                            aiBase["currSta"]+=getTheNumberOfHelping;
+                            if(aiBase["currSta"] > aiBase["maxSta"]) aiBase["currSta"] = aiBase["maxSta"];
+                        }
+                        else{
+                            aiBase["currHp"]+=getTheNumberOfHelping;
+                            if(aiBase["currHp"] > aiBase["maxHp"]) aiBase["currHp"] = aiBase["maxHp"]; 
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        else if(aiBase["currHp"]/aiBase["maxHp"] > 0.4 || flag === true){
+            for(let i = 0 ; i < aiAttacks.length; i++){
+                if(aiAttacks[i][1] === "enemy" && aiAttacks[i][3] <= aiBase["currSta"]){
+                    helper = aiAttacks[i][2].split(", ");
+                    for(let j = 0 ; j < helper.length; j++){
+                        let getTheNumberOfHelping = this.getTheNumberFromTheSkill(helper[j]);
+                        if(helper[j][helper[j].length - 1] === "a") {
+                            playerBase["currSta"]-=getTheNumberOfHelping;
+                            if(playerBase["currSta"] < 0) playerBase["currSta"] = 0;
+                        }
+                        else{
+                            playerBase["currHp"]-=getTheNumberOfHelping;
+                            if(playerBase["currHp"] < 0) playerBase["currHp"] = 0; 
+                        }
+                    }
+                    aiBase["currSta"]-=aiAttacks[i][3];
+                    break;
+                }
+            }
+        }
         setTimeout(() => {
-            this.nextTurn(false);
+            this.setState({
+                secondGamerStatus: aiBase,
+                firstGamerStatus: playerBase
+            }, () => {
+                this.nextTurn(false);
+            });
         },500);
     }
     handleTheAttack(ind){
@@ -90,11 +149,10 @@ export default class Main extends React.Component{
             final = this.state.secondGamerStatus;
             if(this.state.currentTurn === -1) final = this.state.firstGamerStatus;
         }
+        let countSpecialPoints = 0;
         for(let i = 0 ; i < infoAboutTheAttack.length; i++){
+            let getTheNumber = this.getTheNumberFromTheSkill(infoAboutTheAttack[i]);
             let toAnalyze = infoAboutTheAttack[i];
-            let getTheNumber = toAnalyze.substring(1,3);
-            if(isNaN(Number(getTheNumber)) === true) {getTheNumber = getTheNumber.substring(0,1);}
-            getTheNumber = Number(getTheNumber);
             if(toAnalyze[toAnalyze.length - 1].toLowerCase() === "a"){
                 if(ifAttack){
                     final["currSta"]-=getTheNumber;
@@ -103,16 +161,19 @@ export default class Main extends React.Component{
                 else{
                     final["currSta"]+=getTheNumber;
                     if(final["currSta"] > final["maxSta"]) final["currSta"] = final["maxSta"];
+                    final["specialAttackPoints"]-=(getTheNumber*0.75);
                 }
             }
             else{
                 if(ifAttack){
                     final["currHp"]-=getTheNumber;
                     if(final["currHp"] < 0) final["currHp"] = 0;
+                    countSpecialPoints+=(getTheNumber*0.5);
                 }
                 else{
                     final["currHp"]+=getTheNumber;
                     if(final["currHp"] > final["maxHp"]) final["currHp"] = final["maxHp"];
+                    final["specialAttackPoints"]-=getTheNumber;
                 }
             }
         }
@@ -135,6 +196,7 @@ export default class Main extends React.Component{
                 }, () => {
                     let finalOperand = this.state.firstGamerStatus;
                     finalOperand["currSta"]-=operand[3];
+                    if(ifAttack) finalOperand["specialAttackPoints"]+=countSpecialPoints;
                     this.setState({
                         firstGamerStatus: finalOperand
                     }, () => {this.nextTurn(true);});
@@ -146,6 +208,7 @@ export default class Main extends React.Component{
                 }, () => {
                     let finalOperand = this.state.secondGamerStatus;
                     finalOperand["currSta"]-=operand[3];
+                    finalOperand["specialAttackPoints"]+=countSpecialPoints;
                     this.setState({
                         secondGamerStatus: finalOperand
                     }, () => {this.nextTurn(true)});
@@ -154,25 +217,7 @@ export default class Main extends React.Component{
         }
     }
     headingBack(where){
-        this.setState({
-            secondGamerStatus: {
-                currHp: this.fightersGeneralData["fighters"][this.props.secondGamer]["stats"]["hp"],
-                maxHp: this.fightersGeneralData["fighters"][this.props.secondGamer]["stats"]["hp"],
-                currSta: this.fightersGeneralData["fighters"][this.props.secondGamer]["stats"]["sta"],
-                maxSta: this.fightersGeneralData["fighters"][this.props.secondGamer]["stats"]["sta"]
-            },
-            firstGamerStatus: {
-                currHp: this.fightersGeneralData["fighters"][this.props.firstGamer]["stats"]["hp"],
-                maxHp: this.fightersGeneralData["fighters"][this.props.firstGamer]["stats"]["hp"],
-                currSta: this.fightersGeneralData["fighters"][this.props.firstGamer]["stats"]["sta"],
-                maxSta: this.fightersGeneralData["fighters"][this.props.firstGamer]["stats"]["sta"]
-            },
-            firstGamerAttacks: this.fightersGeneralData["fighters"][this.props.firstGamer]["skills"],
-            secondGamerAttacks: this.fightersGeneralData["fighters"][this.props.secondGamer]["skills"],
-            isLoaded: -1,
-            currentTurn: 1,
-            isEnded: 0
-        }, () => {this.props.goBack(where);});
+        this.setState(this.defaultSet, () => {this.props.goBack(where);});
     }
     componentDidMount(){
         this.setState({
@@ -182,8 +227,7 @@ export default class Main extends React.Component{
     render(){
         return this.state.isLoaded === 1 ? this.state.isEnded !== 0 ? <WinningBanner
                     stateOfWinning = {this.state.isEnded}
-                    auxiliaryFunction = {this.headingBack}/> : 
-        <div className="game-container">
+                    auxiliaryFunction = {this.headingBack}/> :  <div className="game-container">
             <div className="gamers-presenting-container">
                 <div className={"gamers-images "+this.fightersGeneralData["fighters"][this.props.firstGamer]["photoClassName"]}>
                     <header className="character-name">{this.fightersGeneralData["fighters"][this.props.firstGamer]["name"]}</header>
@@ -231,11 +275,9 @@ export default class Main extends React.Component{
                         this.props.gameType === 1 && this.state.currentTurn === -1 ? "" : <span>
                             <section className="skills-and-attacks block-center">
                                 {this.state.currentTurn === 1 ? <SkillsRendering skillsToMap = {this.state.firstGamerAttacks} 
-                                hp = {this.state.firstGamerStatus["currHp"]}
-                                sta = {this.state.firstGamerStatus["currSta"]}
+                                userData = {this.state.firstGamerStatus}
                                 handleTheAttack = {this.handleTheAttack}/>: <SkillsRendering skillsToMap = {this.state.secondGamerAttacks} 
-                                hp = {this.state.secondGamerStatus["currHp"]}
-                                sta = {this.state.secondGamerStatus["currSta"]}
+                                userData = {this.state.secondGamerStatus}
                                 handleTheAttack = {this.handleTheAttack}/>}
                             </section>
                             <button className = "skip-turn block-center" onClick = {() => {this.nextTurn(false)}}>Pomiń</button>
@@ -246,5 +288,4 @@ export default class Main extends React.Component{
         </div> : "";
     }
 }
-/*
-*/
+/**/

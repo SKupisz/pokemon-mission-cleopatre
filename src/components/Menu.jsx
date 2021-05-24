@@ -19,7 +19,7 @@ export default class Menu extends React.Component{
             gamePhase: 0, // phases: 0 - first menu, 1 - first gamer choose, 2 - second gamer choose, 3 - AI choose, 4 - fight
             aiOruser: 0,
             chosenCharacterFirst: 0,
-            chosenCharacterSecond: 0,
+            chosenCharacterSecond: 2,
             currentMusicVolume: 1.0,
             musicResource: snoopdogg
         };
@@ -106,10 +106,10 @@ export default class Menu extends React.Component{
     }
     render(){
         return <div> 
-            <ReactHowler
+                              <ReactHowler
         src={this.state.musicResource}
         volume = {this.state.currentMusicVolume}
-      />
+      />    
             {this.state.gamePhase === 0 ? <ChoosingGameMode chooseGameMode = {this.chooseGameMode}/> 
         : (this.state.gamePhase === 1 || this.state.gamePhase === 2)? <div className="menu-container next-phase">
             <header className="main-header block-center">{this.state.gameMode === 1 ? "Wybierz postać" : "Wybierz postać - gracz "+this.state.gamePhase}</header>
@@ -138,4 +138,4 @@ export default class Menu extends React.Component{
             secondGamer = {this.state.chosenCharacterSecond} goBack = {this.goBack}/> : ""}</div>
     }
 }
-/*                  > */
+/*     */

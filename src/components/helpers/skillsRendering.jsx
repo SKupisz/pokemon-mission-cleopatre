@@ -5,12 +5,12 @@ export default class SkillsRendering extends React.Component{
         return this.props.skillsToMap.map((elem,index) => {
             let final = 0;
             if(elem[1] === "enemy"){
-                if(this.props.sta - elem[3] >= 0){
-                    final = 1;
-                }
-                else{
-                    final = -1;
-                }
+                if(this.props.userData["currSta"] - elem[3] >= 0) final = 1;
+                else final = -1;
+            }
+            else{
+                if(this.props.userData["specialAttackPoints"] - elem[3] >= 0) final = 1;
+                else final = -1;
             }
             return <div className={final === 1 ? "skill-attack block-center" : "skill-attack block-center unaviable"} onClick = {() => {if(final === 1){
                 this.props.handleTheAttack(index);
