@@ -58,6 +58,9 @@
                 text-align: center;
                 font-size: 1.8em;
                 margin-bottom: 7px;
+                .resp-text{
+                    display: none;
+                }
             }
             .describe-attack{
                 width: calc(90% - 10px);
@@ -87,6 +90,94 @@
         }
         .unaviable:hover{
             filter: brightness(70%);
+        }
+    }
+}
+@media screen and (max-width: 1073px) {
+    .main-game{
+        .steering{
+            .steering-turn{
+                width: calc(100% - 10px);
+                font-size: 2.4em;
+            }
+            .skip-turn{
+                border: none;
+                border-radius: 10px;
+                padding: 10px 20px;
+                width: calc(100% - 40px);
+                font-size: 1.8em;
+            }
+        }
+        .skills-and-attacks{
+            width: calc(100% - 10px);
+            font-size: 0.85em;
+        }
+    }
+}
+@media screen and (max-width: 868px) {
+    .main-game{
+        .steering{
+            width: 100%;
+            display: block;
+            height: 40%;
+        }
+        .skills-and-attacks, .user-options{
+            display: inline-block;
+            margin: 0;
+            width: calc(70% - 10px);
+            vertical-align: middle;
+        }
+        .user-options{
+            width: 30%;
+        }
+        .skills-and-attacks{
+            .skill-attack{
+                width: calc(45% - 10px);
+                display: inline-block;
+                margin: 4px;
+                font-size: 0.8em;
+                .non-rwd{
+                    display: none;
+                }
+                .healing,.attack{
+                    width: calc(100% - 12px);
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 627px) {
+    .main-game{
+        .steering{
+            height: 50%;
+            .skip-turn{
+                width: calc(50% - 46px);
+                display: inline-block;
+                margin: 3px;
+                font-size: 1.5em;
+            }
+        }
+        .skills-and-attacks{
+            width: calc(100% - 10px);
+            .skill-attack{
+                font-size: 0.9em;
+                .skill-name{
+                    .main-text{
+                        display: none;
+                    }
+                    .resp-text{
+                        display: block;
+                    }
+                }
+                .describe-elem{
+                    font-size: 1.4em;
+                }
+            }
+        }
+        .user-options{
+            width: 100%;
+            text-align: center;
+
         }
     }
 }

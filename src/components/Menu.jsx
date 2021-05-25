@@ -115,7 +115,7 @@ export default class Menu extends React.Component{
             <ReactHowler
         src={this.state.musicResource}
         volume = {this.state.currentMusicVolume}
-      /> 
+    />
             {this.state.gamePhase === 0 ? <ChoosingGameMode chooseGameMode = {this.chooseGameMode}/> 
         : (this.state.gamePhase === 1 || this.state.gamePhase === 2)? <div className="menu-container next-phase">
             <button className="go-backBtn" onClick = {() => {this.fallBackALevel()}}>⬅</button>

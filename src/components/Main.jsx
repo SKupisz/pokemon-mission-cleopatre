@@ -304,8 +304,10 @@ export default class Main extends React.Component{
                                 userData = {this.state.secondGamerStatus}
                                 handleTheAttack = {this.handleTheAttack}/>}
                             </section>
-                            <button className = "skip-turn block-center" onClick = {() => {this.nextTurn(false)}}>Pomiń</button>
-                            <button className = "skip-turn surrender block-center" onClick = {() => {this.surrender()}}>Poddaj się</button>
+                            <div className="user-options">
+                                <button className = "skip-turn block-center" onClick = {() => {this.nextTurn(false)}}>Pomiń</button>
+                                <button className = "skip-turn surrender block-center" onClick = {() => {this.surrender()}}>Poddaj się</button>
+                            </div>
                         </span>
                     }
                 </div>

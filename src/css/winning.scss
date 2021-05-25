@@ -32,3 +32,59 @@
         }
     }
 }
+@media screen and (max-width: 1008px) {
+    .game-container{
+        .winner-header{
+            width: calc(100% - 20px);
+            font-size: 6.9em;
+            margin-bottom: 10vh;
+        }
+        .options-container{
+            width: calc(100% - 10px);
+            .after-game-option{
+                height: calc(30vh - 40px);
+                font-size: 2.9em;
+            }
+        }
+    }
+}
+@media screen and (max-width: 654px) {
+    .game-container{
+        .winner-header{
+            font-size: 4.9em;
+        }
+        .options-container{
+            .after-game-option{
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: calc(80% - 30px);
+            }
+        }
+    }
+}
+@media screen and (max-width: 520px) {
+    .game-container{
+        .winner-header{
+            font-size: 3.9em;
+        }
+        .options-container{
+            .after-game-option{
+                height: calc(20vh - 40px);
+                margin-bottom: 1vh;
+            }
+        }
+    }
+}
+@media screen and (max-width: 413px) {
+    .game-container{
+        .winner-header{
+            font-size: 3.5em;
+        }
+        .options-container{
+            .after-game-option{
+                width: calc(100% - 30px);
+            }
+        }
+    }
+}
