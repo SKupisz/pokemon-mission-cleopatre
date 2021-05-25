@@ -38,6 +38,7 @@ export default class Main extends React.Component{
         this.getTheNumberFromTheSkill = this.getTheNumberFromTheSkill.bind(this);
         this.manageAIturn = this.manageAIturn.bind(this);
         this.nextTurn = this.nextTurn.bind(this);
+        this.surrender = this.surrender.bind(this);
         this.headingBack = this.headingBack.bind(this);
 
     }
@@ -81,6 +82,14 @@ export default class Main extends React.Component{
                 this.manageAIturn();
             }
         });
+    }
+    surrender(){
+        if(this.props.gameType === 1 && this.state.currentTurn === -1) return;
+        else {
+            this.setState({
+                isEnded: this.state.currentTurn*(-1)
+            }, () => {});
+        }
     }
     manageAIturn(){
         let aiBase = this.state.secondGamerStatus, aiAttacks = this.state.secondGamerAttacks;
@@ -296,6 +305,7 @@ export default class Main extends React.Component{
                                 handleTheAttack = {this.handleTheAttack}/>}
                             </section>
                             <button className = "skip-turn block-center" onClick = {() => {this.nextTurn(false)}}>Pomiń</button>
+                            <button className = "skip-turn surrender block-center" onClick = {() => {this.surrender()}}>Poddaj się</button>
                         </span>
                     }
                 </div>

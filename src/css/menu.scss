@@ -23,6 +23,37 @@ body{
         letter-spacing: 0.04em;
         margin-bottom: 20vh;
     }
+    .choosing-header{
+        margin-bottom: 1vh !important;
+    }
+    .instruction{
+        width: calc(90% - 20px);
+        padding: 10px;
+        text-align: center;
+        font-size: 1.2em;
+        font-family: "Bebas Neue",sans-serif;
+        margin-bottom: 1vh !important;
+        color: white;
+        text-shadow: 1px 1px 10px #122;
+        letter-spacing: 0.05em;
+    }
+    .go-backBtn{
+        font-size: 1.9em;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        transition: all 0.4s;
+        background: none;
+        border: 1px solid #fff;
+        color: white;
+    }
+    .go-backBtn:hover{
+        filter: brightness(70%);
+    }
     .menu{
         width: calc(90% - 10px);
         padding: 5px;
@@ -33,7 +64,7 @@ body{
             border-radius: 10px;
             padding: 10px;
             border: none;
-            font-size: 1.9em;
+            font-size: 1.5em;
             font-family: "Pattaya";
             height: 20vh;
             margin: 6px;
@@ -46,6 +77,68 @@ body{
         }
         .credits-btn{
             width: calc(80% - 32px);
+        }
+    }
+}
+@media screen and (max-width: 1299px) {
+    .menu-container{
+        background-position-x: 50%;
+        .main-header{
+            width: calc(100% - 20px);
+            font-size: 2.5em;
+        }
+        .menu{
+            width: calc(100% - 10px);
+            .choosing-btn, .credits-btn{
+                width: calc(80% - 20px);
+                padding: 10px;
+                display: block;
+                margin: 3px auto;
+                height: 10vh;
+            }
+            .choosing-btn:hover, .credits-btn:hover{
+                filter: brightness(70%);
+            }
+            a{
+                text-decoration: none;
+            }
+        }
+    }
+}
+@media screen and (max-width: 580px) {
+    .menu-container{
+        .go-backBtn{
+            font-size: 1.3em;
+            width: 40px;
+            height: 40px;
+        }
+    }
+}
+@media screen and (max-width: 478px) {
+    .menu-container{
+        .main-header{
+            font-size: 2.1em;
+        }
+        .menu{
+            .choosing-btn, .credits-btn{
+                font-size: 1.3em;
+            }
+        }
+        .go-backBtn{
+            font-size: 1.1em;
+            width: 30px;
+            height: 30px;
+        }
+        .instruction{
+            width: calc(100% - 20px);
+            font-size: 1em;
+        }
+    }
+}
+@media screen and (max-width: 380px) {
+    .menu-container{
+        .main-header{
+            font-size: 1.7em;
         }
     }
 }

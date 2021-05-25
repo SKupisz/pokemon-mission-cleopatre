@@ -29,6 +29,7 @@ export default class Menu extends React.Component{
         this.chooseCharacter = this.chooseCharacter.bind(this);
         this.erasingTheVolume = this.erasingTheVolume.bind(this);
         this.goBack = this.goBack.bind(this);
+        this.fallBackALevel = this.fallBackALevel.bind(this);
     }
     chooseGameMode(option){
         this.setState({
@@ -104,14 +105,22 @@ export default class Menu extends React.Component{
             }, () => {});
         }
     }
+    fallBackALevel(){
+        this.setState({
+            gamePhase: this.state.gamePhase-1
+        }, () => {});
+    }
     render(){
-        return <div> <ReactHowler
+        return <div>
+            <ReactHowler
         src={this.state.musicResource}
         volume = {this.state.currentMusicVolume}
       /> 
             {this.state.gamePhase === 0 ? <ChoosingGameMode chooseGameMode = {this.chooseGameMode}/> 
         : (this.state.gamePhase === 1 || this.state.gamePhase === 2)? <div className="menu-container next-phase">
-            <header className="main-header block-center">{this.state.gameMode === 1 ? "Wybierz postać" : "Wybierz postać - gracz "+this.state.gamePhase}</header>
+            <button className="go-backBtn" onClick = {() => {this.fallBackALevel()}}>⬅</button>
+            <header className="main-header choosing-header block-center">{this.state.gameMode === 1 ? "Wybierz postać" : "Wybierz postać - gracz "+this.state.gamePhase}</header>
+            <div className="instruction block-center">Przewijaj w poziomie, by wybierać kolejne postacie</div>
             <section className="gameOptions-characters block-center">
                 <Swiper spaceBetween={10}
                     slidesPerView={1}>
@@ -137,4 +146,4 @@ export default class Menu extends React.Component{
             secondGamer = {this.state.chosenCharacterSecond} goBack = {this.goBack}/> : ""}</div>
     }
 }
-/*     */
+/*      */

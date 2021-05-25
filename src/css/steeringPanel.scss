@@ -22,6 +22,10 @@
             background: rgba(182, 182, 182, 0.2);
             cursor: pointer;
             transition: filter 0.4s;
+            margin-bottom: 4px;
+        }
+        .surrender{
+            background: rgba(182, 0, 0, 0.5);
         }
         .skip-turn:hover{
             filter: brightness(170%);
@@ -37,7 +41,7 @@
         width: calc(90% - 10px);
         padding: 5px;
         text-align: center;
-        margin-bottom: 4vh;
+        margin-bottom: 2vh;
         .skill-attack{
             width: calc(95% - 10px);
             padding: 5px;

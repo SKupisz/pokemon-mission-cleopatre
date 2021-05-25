@@ -6,6 +6,14 @@
         width: 50%;
     }
 }
+@keyframes gameIntroRWD {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 100%;
+    }
+}
 @keyframes introAnimation {
     0%{
         opacity: 1;
@@ -37,36 +45,6 @@
     background-size: cover;
     background-position-x: 80%;
     text-align: center;
-    .game-header{
-        width: 80%;
-        text-align: center;
-        position: absolute;
-        top: 30%;
-        left: 1%;
-        font-size: 9.9em;
-        font-family: 'Amatic SC', cursive;
-        letter-spacing: 0.09em;
-        color: rgba(255,10,10,.9);
-        background: black;
-        animation-duration: 1.5s;
-        animation-iteration-count: 1;
-        animation-fill-mode: forwards;
-    }
-    .first-character{
-        /*animation-name: introMove;
-        transform: rotate(-6deg);*/
-    }
-    .second-character{
-        opacity: 0;
-        /*animation-name: introMoveSecond;
-        top: 10%;
-        animation-delay: 1.5s;
-        transform: rotate(6deg);*/
-    }
-    .fight{
-        transform: none;
-        left: auto;
-    }
     .gamers-presenting-container{
         width: 100%;
         height: 100%;
@@ -195,5 +173,32 @@
         display: inline-block;
         vertical-align: top;
         height: 100%;
+    }
+}
+@media screen and (max-width: 1132px) {
+    .game-container{
+        .gamers-presenting-container{
+            .gamers-images{
+                .character-name{
+                    font-size: 4.5em;
+                    width: calc(100% - 20px);
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 1014px) {
+    .game-container{
+        .gamers-presenting-container{
+            .gamers-images{
+                display: block;
+                height: 50%;
+                animation-name: gameIntroRWD;
+                .character-name{
+                    font-size: 4em;
+                    top: 25%;
+                }
+            }
+        }
     }
 }
