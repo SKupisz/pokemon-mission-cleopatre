@@ -21,3 +21,11 @@
         filter: brightness(50%);
     }
 }
+@media screen and (max-width: 608px) {
+    .main-section{
+        width: calc(80% - 10px);
+        .info-wrapper{
+            width: calc(100% - 20px);
+        }
+    }
+}
