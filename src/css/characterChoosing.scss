@@ -3,22 +3,15 @@
         margin-bottom: 5vh;
     }
 }
-.asterix{
-    background: url("../img/asterix.jpg");
-    background-size: cover;
-}
-.obelix{
-    background: url("../img/obelix.jpg");
-    background-size: cover;
-}
-.marnypopis{
-    background: url("../img/marnypopis.jpg");
-    background-position-x: 40%;
-    background-size: cover;
-}
-.cezar{
-    background: url("../img/cezar.jpg");
-    background-size: cover;
+$characters: "asterix" "obelix" "marnypopis" "cezar" "panoramix" "ceplus" "numernabis" "cleopatra";
+@for $i from 1 to length($characters)+1 {
+    .#{nth($characters,$i)}{
+        background: url(#{"../img/"+nth($characters,$i)+".jpg"});
+        background-size: cover ;
+        @if #{nth($characters,$i) == "marnypopis"} {
+            background-position-x: 40% !important;
+        }
+    }
 }
 .gameOptions-characters{
     width: calc(35% - 20px);

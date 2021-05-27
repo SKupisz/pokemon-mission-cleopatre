@@ -16,7 +16,7 @@ export default class Menu extends React.Component{
 
         this.state = {
             gameMode: 0, // 1 - single player, 2 - two players
-            gamePhase: 0, // phases: 0 - first menu, 1 - first gamer choose, 2 - second gamer choose, 3 - AI choose, 4 - fight
+            gamePhase: -1, // phases: 0 - first menu, 1 - first gamer choose, 2 - second gamer choose, 3 - AI choose, 4 - fight
             aiOruser: 0,
             chosenCharacterFirst: 0,
             chosenCharacterSecond: 2,
@@ -110,12 +110,17 @@ export default class Menu extends React.Component{
             gamePhase: this.state.gamePhase-1
         }, () => {});
     }
+    componentDidMount(){
+        this.setState({
+            gamePhase: 0
+        }, () => {});
+    }
     render(){
         return <div>
-            <ReactHowler
+             <ReactHowler
         src={this.state.musicResource}
         volume = {this.state.currentMusicVolume}
-    />
+    /> 
             {this.state.gamePhase === 0 ? <ChoosingGameMode chooseGameMode = {this.chooseGameMode}/> 
         : (this.state.gamePhase === 1 || this.state.gamePhase === 2)? <div className="menu-container next-phase">
             <button className="go-backBtn" onClick = {() => {this.fallBackALevel()}}>⬅</button>
@@ -146,4 +151,4 @@ export default class Menu extends React.Component{
             secondGamer = {this.state.chosenCharacterSecond} goBack = {this.goBack}/> : ""}</div>
     }
 }
-/*      */
+/*  */

@@ -51,9 +51,65 @@
             },
             "skills": [
                 ["Plan trzymiesięczny", "user", "+3HP, +4Sta", 5], 
-                ["Takie tam stożki", "enemy", "-14HP", 10], 
+                ["Takie tam stożki", "enemy", "-14HP", 12], 
                 ["Si vic pacem", "enemy", "-6HP", 7], 
                 ["Zestawsuperplusie?", "user", "+8Sta", 17]
+            ]
+        },
+        {
+            "name": "Kleopatra",
+            "photoClassName": "cleopatra",
+            "stats": {
+                "hp": 100,
+                "sta": 110
+            },
+            "skills": [
+                ["Ledwie prowincja?", "enemy", "-8HP", 10], 
+                ["To może... Trochę potrwać", "user", "+9HP", 16], 
+                ["DOSYĆ!", "enemy", "-19HP", 20],
+                ["Grecka krew", "user", "+7HP", 12]
+            ]
+        },
+        {
+            "name": "Panoramix",
+            "photoClassName": "panoramix",
+            "stats": {
+                "hp": 115,
+                "sta": 105
+            },
+            "skills": [
+                ["Paskudny charakterek", "enemy", "-7HP", 8], 
+                ["Są rzeczy niezmienne", "enemy", "-10HP", 10], 
+                ["Kalafiorowa strike", "user", "+6HP", 10], 
+                ["Nowy program taryfowy", "user", "+4HP, +8Sta", 20]
+            ]
+        },
+        {
+            "name": "Gajus Ceplus",
+            "photoClassName": "ceplus",
+            "stats": {
+                "hp": 108,
+                "sta": 110
+            },
+            "skills": [
+                ["Sen o sandałach", "enemy", "-4HP", 5], 
+                ["Imperium kontratakuje", "enemy", "-14HP", 14], 
+                ["Ponowić natarcie!", "enemy", "-20HP", 20], 
+                ["Cezar mówi poszli won!", "user", "+8Sta", 13]
+            ]
+        },
+        {
+            "name": "Numernabis",
+            "photoClassName": "numernabis",
+            "stats": {
+                "hp": 115,
+                "sta": 105
+            },
+            "skills": [
+                ["Express do krokodyli", "enemy", "-6HP", 8], 
+                ["Poczuj w sobie siłę lwa", "enemy", "-17HP", 18], 
+                ["Era samoobsługi", "user", "+6Sta", 10],
+                ["Chyba oberwałem", "user", "+8HP", 14]
             ]
         }
     ]
