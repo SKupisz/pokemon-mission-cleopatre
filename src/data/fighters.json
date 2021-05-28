@@ -103,13 +103,55 @@
             "photoClassName": "numernabis",
             "stats": {
                 "hp": 115,
-                "sta": 105
+                "sta": 110
             },
             "skills": [
                 ["Express do krokodyli", "enemy", "-6HP", 8], 
                 ["Poczuj w sobie siłę lwa", "enemy", "-17HP", 18], 
                 ["Era samoobsługi", "user", "+6Sta", 10],
                 ["Chyba oberwałem", "user", "+8HP", 14]
+            ]
+        },
+        {
+            "name": "Nikosis",
+            "photoClassName": "nikosis",
+            "stats": {
+                "hp": 120,
+                "sta": 110
+            },
+            "skills": [
+                ["Atak szakali", "enemy", "-9HP", 11], 
+                ["Zamknięcie w grobowcu", "enemy", "-12HP", 14], 
+                ["Spoko kiecka", "user", "+5HP, +9Sta", 21],
+                ["Kogo zabić?", "enemy", "-18HP", 20]
+            ]
+        },
+        {
+            "name": "Otis",
+            "photoClassName": "otis",
+            "stats": {
+                "hp": 110,
+                "sta": 120
+            },
+            "skills": [
+                ["Idealna Matura", "enemy", "-6Sta", 8], 
+                ["Ketebese!", "enemy", "-13HP", 12], 
+                ["Matematyczna precyzja", "enemy", "-7HP", 14],
+                ["Umiłowanie życia", "user", "+8HP", 12]
+            ]
+        },
+        {
+            "name": "Krwawobrody",
+            "photoClassName": "redbeard",
+            "stats": {
+                "hp": 118,
+                "sta": 110
+            },
+            "skills": [
+                ["Refuj bukszpryt", "enemy", "-4Sta", 6], 
+                ["Ga-ga-galowie", "user", "+6HP, -7Sta", 10], 
+                ["Siekiera", "enemy", "-15HP", 16],
+                ["Zorganizowany pośpiech", "user", "+2Sta", 5]
             ]
         }
     ]

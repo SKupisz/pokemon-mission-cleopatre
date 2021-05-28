@@ -43,8 +43,8 @@ export default class Main extends React.Component{
 
     }
     getTheNumberFromTheSkill(text){
-        let getTheNumber = text.substring(1,3);
-        if(isNaN(Number(getTheNumber)) === true) {getTheNumber = getTheNumber.substring(0,1);}
+        let getTheNumber = text.substring(0,3);
+        if(isNaN(Number(getTheNumber)) === true) {getTheNumber = getTheNumber.substring(0,2);}
         getTheNumber = Number(getTheNumber);
         return getTheNumber;
     }
@@ -116,6 +116,7 @@ export default class Main extends React.Component{
             }
         }
         if(aiBase["currHp"]/aiBase["maxHp"] > 0.4 || flag === false){
+            console.log("jest");
             let mostPowerfulAttackInd = -1, maxPower = 0, currentPower = 0;
             for(let i = 0 ; i < aiAttacks.length; i++){
                 if(aiAttacks[i][1] === "enemy" && aiAttacks[i][3] <= aiBase["currSta"]){
@@ -123,7 +124,7 @@ export default class Main extends React.Component{
                     currentPower = 0;
                     for(let j = 0 ; j < helper.length; j++){
                         let getTheNumberOfHelping = this.getTheNumberFromTheSkill(helper[j]);
-                        currentPower+=getTheNumberOfHelping;
+                        currentPower-=getTheNumberOfHelping;
                     }
                     if(currentPower > maxPower){
                         maxPower = currentPower;
@@ -135,14 +136,9 @@ export default class Main extends React.Component{
                 helper = aiAttacks[mostPowerfulAttackInd][2].split(", ");
                 for(let j = 0 ; j < helper.length; j++){
                     let getTheNumberOfHelping = this.getTheNumberFromTheSkill(helper[j]);
-                    if(helper[j][helper[j].length - 1] === "a") {
-                        playerBase["currSta"]-=getTheNumberOfHelping;
-                        if(playerBase["currSta"] < 0) playerBase["currSta"] = 0;
-                    }
-                    else{
-                        playerBase["currHp"]-=getTheNumberOfHelping;
-                        if(playerBase["currHp"] < 0) playerBase["currHp"] = 0; 
-                    }
+                    let playerBaseInd = helper[j][helper[j].length - 1] === "a" ? "currSta" : "currHp";
+                    playerBase[playerBaseInd]+=getTheNumberOfHelping;
+                    if(playerBase[playerBaseInd] < 0) playerBase[playerBaseInd] = 0;
                 }
                 aiBase["currSta"]-=aiAttacks[mostPowerfulAttackInd][3];
             }
@@ -178,24 +174,22 @@ export default class Main extends React.Component{
             let getTheNumber = this.getTheNumberFromTheSkill(infoAboutTheAttack[i]);
             let toAnalyze = infoAboutTheAttack[i];
             if(toAnalyze[toAnalyze.length - 1].toLowerCase() === "a"){
+                final["currSta"]+=getTheNumber;
                 if(ifAttack){
-                    final["currSta"]-=getTheNumber;
                     if(final["currSta"] < 0) final["currSta"] = 0;
                 }
                 else{
-                    final["currSta"]+=getTheNumber;
                     if(final["currSta"] > final["maxSta"]) final["currSta"] = final["maxSta"];
                     final["specialAttackPoints"]-=(getTheNumber*0.75);
                 }
             }
             else{
+                final["currHp"]+=getTheNumber;
                 if(ifAttack){
-                    final["currHp"]-=getTheNumber;
                     if(final["currHp"] < 0) final["currHp"] = 0;
-                    countSpecialPoints+=(getTheNumber*0.5);
+                    countSpecialPoints-=(getTheNumber*0.5);
                 }
                 else{
-                    final["currHp"]+=getTheNumber;
                     if(final["currHp"] > final["maxHp"]) final["currHp"] = final["maxHp"];
                     final["specialAttackPoints"]-=getTheNumber;
                 }

@@ -19,7 +19,7 @@ export default class Menu extends React.Component{
             gamePhase: -1, // phases: 0 - first menu, 1 - first gamer choose, 2 - second gamer choose, 3 - AI choose, 4 - fight
             aiOruser: 0,
             chosenCharacterFirst: 0,
-            chosenCharacterSecond: 2,
+            chosenCharacterSecond: 0,
             currentMusicVolume: 1.0,
             musicResource: snoopdogg
         };
@@ -49,8 +49,12 @@ export default class Menu extends React.Component{
         }
         this.setState(objectToPassToState, () => {
             if(this.state.gamePhase === 3){
+                let secondCharacterNumber = Math.floor(Math.random()*this.characters.length);
+                while(secondCharacterNumber === this.state.chosenCharacterFirst){
+                    secondCharacterNumber = Math.floor(Math.random()*this.characters.length)
+                }
                 this.setState({
-                    chosenCharacterSecond: Math.floor(Math.random()*this.characters.length),
+                    chosenCharacterSecond: secondCharacterNumber,
                     gamePhase: 4,
                     aiOruser: 1
                 }, () => {
@@ -117,10 +121,7 @@ export default class Menu extends React.Component{
     }
     render(){
         return <div>
-             <ReactHowler
-        src={this.state.musicResource}
-        volume = {this.state.currentMusicVolume}
-    /> 
+            <ReactHowler src={this.state.musicResource} volume = {this.state.currentMusicVolume}/> 
             {this.state.gamePhase === 0 ? <ChoosingGameMode chooseGameMode = {this.chooseGameMode}/> 
         : (this.state.gamePhase === 1 || this.state.gamePhase === 2)? <div className="menu-container next-phase">
             <button className="go-backBtn" onClick = {() => {this.fallBackALevel()}}>⬅</button>

@@ -11,6 +11,16 @@ export default class SkillsRendering extends React.Component{
             else{
                 if(this.props.userData["specialAttackPoints"] - elem[3] >= 0) final = 1;
                 else final = -1;
+                if(elem[2].indexOf("Sta") !== -1){
+                    let getTheLevelOfStamina = elem[2].substr(elem[2].indexOf("Sta")-2,2);
+                    if(getTheLevelOfStamina.charAt(0) !== '+' && getTheLevelOfStamina.charAt(0) !== '-'){
+                        getTheLevelOfStamina = elem[2].substr(elem[2].indexOf("Sta")-3,2);
+                    }
+                    getTheLevelOfStamina = Number(getTheLevelOfStamina);
+                    if(getTheLevelOfStamina < 0 && this.props.userData["currSta"] + getTheLevelOfStamina < 0){
+                        final = -1;
+                    }
+                }
             }
             return <div className={final === 1 ? "skill-attack block-center" : "skill-attack block-center unaviable"} onClick = {() => {if(final === 1){
                 this.props.handleTheAttack(index);
