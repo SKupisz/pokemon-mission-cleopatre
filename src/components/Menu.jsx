@@ -14,6 +14,9 @@ export default class Menu extends React.Component{
     constructor(props){
         super(props);
 
+        this.fightingMusicRef = React.createRef();
+        this.menuMusicRef = React.createRef();
+
         this.state = {
             gameMode: 0, // 1 - single player, 2 - two players
             gamePhase: -1, // phases: 0 - first menu, 1 - first gamer choose, 2 - second gamer choose, 3 - AI choose, 4 - fight
@@ -21,7 +24,7 @@ export default class Menu extends React.Component{
             chosenCharacterFirst: 0,
             chosenCharacterSecond: 0,
             currentMusicVolume: 1.0,
-            musicResource: snoopdogg
+            whichMusicPlaying: true
         };
         this.fighters = require("../data/fighters.json");
         this.characters = this.fighters["fighters"];
@@ -76,15 +79,17 @@ export default class Menu extends React.Component{
                 currentMusicVolume: i
             }, () =>{
                 setTimeout(() => {
-                    this.erasingTheVolume(i-0.1);
-                }, 250);
+                    this.erasingTheVolume(i-0.05);
+                }, 150);
             });
         }
         else{
             this.setState({
                 currentMusicVolume: 0.8,
-                musicResource: fighting
-            }, () => {});
+                whichMusicPlaying: false
+            }, () => {
+                this.menuMusicRef.current.stop();
+            });
         }
     }
     goBack(where){
@@ -95,7 +100,7 @@ export default class Menu extends React.Component{
                 chosenCharacterFirst: 0,
                 chosenCharacterSecond: 0,
                 currentMusicVolume: 1.0,
-                musicResource: snoopdogg
+                whichMusicPlaying: true
             }, () => {});
         }
         else{
@@ -105,9 +110,10 @@ export default class Menu extends React.Component{
                 chosenCharacterFirst: 0,
                 chosenCharacterSecond: 0,
                 currentMusicVolume: 1.0,
-                musicResource: snoopdogg
+                whichMusicPlaying: true
             }, () => {});
         }
+        this.fightingMusicRef.current.stop();
     }
     fallBackALevel(){
         this.setState({
@@ -121,7 +127,12 @@ export default class Menu extends React.Component{
     }
     render(){
         return <div>
-            <ReactHowler src={this.state.musicResource} volume = {this.state.currentMusicVolume}/> 
+            <ReactHowler src={snoopdogg} volume = {this.state.currentMusicVolume} 
+            playing = {this.state.whichMusicPlaying} loop = {true}
+            ref = {this.menuMusicRef}/> 
+            <ReactHowler src={fighting} volume = {this.state.currentMusicVolume} 
+            playing = {!this.state.whichMusicPlaying} loop = {true}
+            ref = {this.fightingMusicRef}/> 
             {this.state.gamePhase === 0 ? <ChoosingGameMode chooseGameMode = {this.chooseGameMode}/> 
         : (this.state.gamePhase === 1 || this.state.gamePhase === 2)? <div className="menu-container next-phase">
             <button className="go-backBtn" onClick = {() => {this.fallBackALevel()}}>⬅</button>
