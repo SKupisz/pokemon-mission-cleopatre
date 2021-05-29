@@ -50,16 +50,19 @@ export default class Main extends React.Component{
     }
     nextTurn(hasDoneSomething){
         if(hasDoneSomething === false){
+            let StaminaStep = 1.5;
             if(this.state.currentTurn === 1){
                 let operand = this.state.firstGamerStatus;
-                if(operand["currSta"]+1 <= operand["maxSta"]) operand["currSta"]++;
+                operand["currSta"]+=StaminaStep;
+                if(operand["currSta"] > operand["maxSta"]) operand["currSta"] = operand["maxSta"];
                 this.setState({
                    firstGamerStatus: operand
                 }, () => {});
             }
             else{
                 let operand = this.state.secondGamerStatus;
-                if(operand["currSta"]+1 <= operand["maxSta"]) operand["currSta"]++;
+                operand["currSta"]+=StaminaStep;
+                if(operand["currSta"] > operand["maxSta"]) operand["currSta"] = operand["maxSta"];
                 this.setState({
                     secondGamerStatus: operand
                 }, () => {});

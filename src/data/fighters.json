@@ -8,10 +8,10 @@
                 "sta": 95
             },
             "skills": [
-                ["Magia Gimikis", "user", "+10HP, +10Sta", 15], 
-                ["Panowie nowi?", "enemy", "-7HP", 8], 
+                ["Magia Gimikis", "user", "+10HP, +10Sta", 22.5], 
+                ["Panowie nowi?", "enemy", "-7HP", 8.75], 
                 ["Praktyczna rzecz!", "user", "+6HP", 4], 
-                ["Argument nie do podważenia", "enemy", "-12HP", 14]
+                ["Argument nie do podważenia", "enemy", "-12HP", 15]
             ]
         },
         {
@@ -22,10 +22,10 @@
                 "sta": 110
             },
             "skills": [
-                ["Kto tu jest gruby?", "enemy", "-2HP", 4], 
+                ["Kto tu jest gruby?", "enemy", "-2HP", 2.5], 
                 ["Dzik power", "user", "+8HP", 8], 
-                ["Dżem langusty", "enemy", "-20HP", 23], 
-                ["Utszebe", "enemy", "-11HP", 13]
+                ["Dżem langusty", "enemy", "-20HP", 25], 
+                ["Utszebe", "enemy", "-11HP", 11.75]
             ]
         },
         {
@@ -36,9 +36,9 @@
                 "sta": 90
             },
             "skills": [
-                ["Plaga egipska", "enemy", "-15HP", 16], 
+                ["Plaga egipska", "enemy", "-15HP", 18.75], 
                 ["To kwestia zaplecza", "user", "+2HP, +5Sta", 4], 
-                ["Klasyczny sierpowy", "enemy", "-18HP", 18], 
+                ["Klasyczny sierpowy", "enemy", "-18HP", 22.5], 
                 ["Immakuruku eruczene", "user", "+10Sta", 20]
             ]
         },
@@ -51,8 +51,8 @@
             },
             "skills": [
                 ["Plan trzymiesięczny", "user", "+3HP, +4Sta", 5], 
-                ["Takie tam stożki", "enemy", "-14HP", 12], 
-                ["Si vic pacem", "enemy", "-6HP", 7], 
+                ["Takie tam stożki", "enemy", "-14HP", 17.5], 
+                ["Si vic pacem", "enemy", "-6HP", 7.5], 
                 ["Zestawsuperplusie?", "user", "+8Sta", 17]
             ]
         },
@@ -66,7 +66,7 @@
             "skills": [
                 ["Ledwie prowincja?", "enemy", "-8HP", 10], 
                 ["To może... Trochę potrwać", "user", "+9HP", 16], 
-                ["DOSYĆ!", "enemy", "-19HP", 20],
+                ["DOSYĆ!", "enemy", "-19HP", 23.75],
                 ["Grecka krew", "user", "+7HP", 12]
             ]
         },
@@ -78,8 +78,8 @@
                 "sta": 105
             },
             "skills": [
-                ["Paskudny charakterek", "enemy", "-7HP", 8], 
-                ["Są rzeczy niezmienne", "enemy", "-10HP", 10], 
+                ["Paskudny charakterek", "enemy", "-7HP", 8.75], 
+                ["Są rzeczy niezmienne", "enemy", "-10HP", 12.5], 
                 ["Kalafiorowa strike", "user", "+6HP", 10], 
                 ["Nowy program taryfowy", "user", "+4HP, +8Sta", 20]
             ]
@@ -93,8 +93,8 @@
             },
             "skills": [
                 ["Sen o sandałach", "enemy", "-4HP", 5], 
-                ["Imperium kontratakuje", "enemy", "-14HP", 14], 
-                ["Ponowić natarcie!", "enemy", "-20HP", 20], 
+                ["Imperium kontratakuje", "enemy", "-14HP", 17.5], 
+                ["Ponowić natarcie!", "enemy", "-20HP", 25], 
                 ["Cezar mówi poszli won!", "user", "+8Sta", 13]
             ]
         },
@@ -106,8 +106,8 @@
                 "sta": 110
             },
             "skills": [
-                ["Express do krokodyli", "enemy", "-6HP", 8], 
-                ["Poczuj w sobie siłę lwa", "enemy", "-17HP", 18], 
+                ["Express do krokodyli", "enemy", "-6HP", 7.5], 
+                ["Poczuj w sobie siłę lwa", "enemy", "-17HP", 21.25], 
                 ["Era samoobsługi", "user", "+6Sta", 10],
                 ["Chyba oberwałem", "user", "+8HP", 14]
             ]
@@ -120,10 +120,10 @@
                 "sta": 110
             },
             "skills": [
-                ["Atak szakali", "enemy", "-9HP", 11], 
-                ["Zamknięcie w grobowcu", "enemy", "-12HP", 14], 
+                ["Atak szakali", "enemy", "-9HP", 11.25], 
+                ["Zamknięcie w grobowcu", "enemy", "-12HP", 15], 
                 ["Spoko kiecka", "user", "+5HP, +9Sta", 21],
-                ["Kogo zabić?", "enemy", "-18HP", 20]
+                ["Kogo zabić?", "enemy", "-18HP", 22.5]
             ]
         },
         {
@@ -134,9 +134,9 @@
                 "sta": 120
             },
             "skills": [
-                ["Idealna Matura", "enemy", "-6Sta", 8], 
-                ["Ketebese!", "enemy", "-13HP", 12], 
-                ["Matematyczna precyzja", "enemy", "-7HP", 14],
+                ["Idealna Matura", "enemy", "-6Sta", 7.5], 
+                ["Ketebese!", "enemy", "-13HP", 16.25], 
+                ["Matematyczna precyzja", "enemy", "-7HP", 8.75],
                 ["Umiłowanie życia", "user", "+8HP", 12]
             ]
         },
@@ -148,9 +148,9 @@
                 "sta": 110
             },
             "skills": [
-                ["Refuj bukszpryt", "enemy", "-4Sta", 6], 
+                ["Refuj bukszpryt", "enemy", "-4Sta", 5], 
                 ["Ga-ga-galowie", "user", "+6HP, -7Sta", 10], 
-                ["Siekiera", "enemy", "-15HP", 16],
+                ["Siekiera", "enemy", "-15HP", 18.75],
                 ["Zorganizowany pośpiech", "user", "+2Sta", 5]
             ]
         }
