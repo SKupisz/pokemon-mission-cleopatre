@@ -262,3 +262,14 @@
         }
     }
 }
+@media screen and (max-width: 384px) {
+    .main-game{
+        .gamer-level{
+            .stats{
+                .character-info{
+                    font-size: 1.3em;
+                }
+            }
+        }
+    }
+}

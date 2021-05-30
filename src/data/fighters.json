@@ -148,10 +148,24 @@
                 "sta": 110
             },
             "skills": [
-                ["Refuj bukszpryt", "enemy", "-4Sta", 5], 
+                ["Refuj bukszpryt", "enemy", "-3Sta", 3.75], 
                 ["Ga-ga-galowie", "user", "+6HP, -7Sta", 10], 
                 ["Siekiera", "enemy", "-15HP", 18.75],
                 ["Zorganizowany pośpiech", "user", "+2Sta", 5]
+            ]
+        },
+        {
+            "name": "Idea",
+            "photoClassName": "idea",
+            "stats": {
+                "hp": 110,
+                "sta": 105
+            },
+            "skills": [
+                ["Coś przerywa", "enemy", "-2Sta", 2.5], 
+                ["Rzut kolumną", "enemy", "-16HP", 20], 
+                ["Za dużo batów!", "enemy", "-9HP", 11.25],
+                ["Dobrze gada!", "user", "+4HP, +5Sta", 5]
             ]
         }
     ]

@@ -1,8 +1,10 @@
 import React from "react";
 
-import FightImage from "./helpers/fightImages.jsx";
-import SkillsRendering from "./helpers/skillsRendering.jsx";
-import WinningBanner from "./helpers/winningBanner.jsx";
+import Intro from "./gameHelpers/intro.jsx";
+import FightImage from "./gameHelpers/fightImages.jsx";
+import StatsBlock from "./gameHelpers/statsBlock.jsx";
+import SkillsRendering from "./gameHelpers/skillsRendering.jsx";
+import WinningBanner from "./gameHelpers/winningBanner.jsx";
 
 export default class Main extends React.Component{
     constructor(props){
@@ -249,25 +251,16 @@ export default class Main extends React.Component{
         return this.state.isLoaded === 1 ? this.state.isEnded !== 0 ? <WinningBanner
                     stateOfWinning = {this.state.isEnded}
                     auxiliaryFunction = {this.headingBack}/> :  <div className="game-container">
-            <div className="gamers-presenting-container">
-                <div className={"gamers-images "+this.fightersGeneralData["fighters"][this.props.firstGamer]["photoClassName"]}>
-                    <header className="character-name">{this.fightersGeneralData["fighters"][this.props.firstGamer]["name"]}</header>
-                </div>
-                <div className={"gamers-images second-fighter "+this.fightersGeneralData["fighters"][this.props.secondGamer]["photoClassName"]}>
-                    <header className="character-name second-name">{this.fightersGeneralData["fighters"][this.props.secondGamer]["name"]}</header>
-                </div>
-            </div>
+            <Intro
+            firstGeneralData = {this.fightersGeneralData["fighters"][this.props.firstGamer]}
+            secondGeneralData = {this.fightersGeneralData["fighters"][this.props.secondGamer]}/>
             <section className="main-game">
                 <div className="game-characters">
                     <div className="second-gamer-level gamer-level">
 
-                        <div className="stats">
-                            <div className="stats-elem health block-center">❤ {this.state.secondGamerStatus["currHp"]+" / "+this.state.secondGamerStatus["maxHp"]}</div>
-                            <div className="stats-elem stamina block-center">💪🏻 {this.state.secondGamerStatus["currSta"]+" / "+this.state.secondGamerStatus["maxSta"]}</div>
-                            <div className="stats-elem block-center">
-
-                            </div>
-                        </div>
+                        <StatsBlock
+                        gamerData = {this.state.secondGamerStatus}
+                        wrapperClass = "stats"/>
 
                         <FightImage 
                             surroundingClasses = {this.state.currentTurn === -1 ? "image-surrounding second-surrounding block-center highlighted" : "image-surrounding second-surrounding block-center"}
@@ -276,13 +269,9 @@ export default class Main extends React.Component{
                     </div>
                     <div className="first-gamer-level gamer-level">
 
-                        <div className="stats first-stats">
-                            <div className="stats-elem health block-center">❤ {this.state.firstGamerStatus["currHp"]+" / "+this.state.firstGamerStatus["maxHp"]}</div>
-                            <div className="stats-elem stamina block-center">💪🏻 {this.state.firstGamerStatus["currSta"]+" / "+this.state.firstGamerStatus["maxSta"]}</div>
-                            <div className="stats-elem block-center">
-
-                            </div>
-                        </div>
+                        <StatsBlock
+                        gamerData = {this.state.firstGamerStatus}
+                        wrapperClass = "stats first-stats"/>
 
                         <FightImage 
                             surroundingClasses = {this.state.currentTurn === 1 ? "image-surrounding first-surrounding block-center highlighted" : "image-surrounding first-surrounding block-center"}

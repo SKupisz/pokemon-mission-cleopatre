@@ -1,8 +1,8 @@
 import React from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import ReactHowler from 'react-howler';
 
-import ChoosingGameMode from "./helpers/choosingGameMode.jsx";
+import ChoosingGameMode from "./menuHelpers/choosingGameMode.jsx";
+import MenuMusic from "./menuHelpers/menuMusic.jsx";
 import Main from "./Main.jsx";
 
 import snoopdogg from "../music/asterix_i_obelix.mp3";
@@ -127,12 +127,9 @@ export default class Menu extends React.Component{
     }
     render(){
         return <div>
-            <ReactHowler src={snoopdogg} volume = {this.state.currentMusicVolume} 
-            playing = {this.state.whichMusicPlaying} loop = {true}
-            ref = {this.menuMusicRef}/> 
-            <ReactHowler src={fighting} volume = {this.state.currentMusicVolume} 
-            playing = {!this.state.whichMusicPlaying} loop = {true}
-            ref = {this.fightingMusicRef}/> 
+            <MenuMusic
+            source1 = {[snoopdogg, this.state.currentMusicVolume, this.state.whichMusicPlaying, this.menuMusicRef]}
+            source2 = {[fighting, this.state.currentMusicVolume, !this.state.whichMusicPlaying, this.fightingMusicRef]}/>
             {this.state.gamePhase === 0 ? <ChoosingGameMode chooseGameMode = {this.chooseGameMode}/> 
         : (this.state.gamePhase === 1 || this.state.gamePhase === 2)? <div className="menu-container next-phase">
             <button className="go-backBtn" onClick = {() => {this.fallBackALevel()}}>⬅</button>
@@ -163,4 +160,3 @@ export default class Menu extends React.Component{
             secondGamer = {this.state.chosenCharacterSecond} goBack = {this.goBack}/> : ""}</div>
     }
 }
-/*  */
