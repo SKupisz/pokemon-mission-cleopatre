@@ -177,7 +177,25 @@
         .user-options{
             width: 100%;
             text-align: center;
-
+        }
+    }
+}
+@media screen and (max-width: 360px) {
+    .main-game{
+        .steering{
+            font-size: 0.6em;
+            height: auto;
+            min-height: 40%;
+            .skip-turn{
+                font-size: 1.2em;
+            }
+        }
+        .skills-and-attacks{
+            .skill-attack{
+                .skill-name{
+                    margin-bottom: 0;
+                }
+            }
         }
     }
 }

@@ -231,6 +231,11 @@
             width: 100%;
             height: 60%;
         }
+        .gamer-level{
+            .stats{
+                top: 5%;
+            }
+        }
     }
 }
 @media screen and (max-width: 627px) {
@@ -242,7 +247,6 @@
         }
         .gamer-level{
             .stats{
-                top: 12%;
                 font-size: 0.7em;
                 .stats-elem{
                     width: calc(100% - 10px);
@@ -264,10 +268,22 @@
 }
 @media screen and (max-width: 384px) {
     .main-game{
+        overflow-y: scroll;
+        .game-characters{
+            height: 60%;
+        }
         .gamer-level{
             .stats{
-                .character-info{
-                    font-size: 1.3em;
+                font-size: 0.5em;
+            }
+            .image-container{
+                .image{
+                    width: 70px;
+                    height: 70px;
+                }
+                .image-surrounding{
+                    width: 80px;
+                    height: 80px;
                 }
             }
         }
