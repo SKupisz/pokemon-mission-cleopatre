@@ -1,12 +1,15 @@
 import React from "react";
 
 const StatsBlock = ({gamerData, wrapperClass}) => {
-    let info = "zwarty i gotowy";
+    let ending = "";
+    if(gamerData["sex"] === "m") ending = "y";
+    else ending = "a";
+    let info = `zwart${ending} i gotow${ending}`;
     if(gamerData["currHp"]/gamerData["maxHp"] <= 0.2){
-        info = "wykrwawiony";
+        info = `wykrwawion${ending}`;
     }
     else if(gamerData["currSta"]/gamerData["maxSta"] <= 0.3){
-        info = "zmęczony";
+        info = `zmęczon${ending}`;
     }
     return <div className={wrapperClass}>
         <div className="stats-elem health block-center">❤ {gamerData["currHp"]+" / "+gamerData["maxHp"]}</div>

@@ -133,7 +133,7 @@ export default class Menu extends React.Component{
         return <div>
             <MenuMusic
                 source1 = {[snoopdogg, this.state.currentMusicVolume, this.state.whichMusicPlaying, this.menuMusicRef]}
-                source2 = {[fighting, this.state.currentMusicVolume, !this.state.whichMusicPlaying, this.fightingMusicRef]}/> 
+                source2 = {[fighting, this.state.currentMusicVolume, !this.state.whichMusicPlaying, this.fightingMusicRef]}/>
             {this.state.gamePhase === 0 ? <ChoosingGameMode chooseGameMode = {this.chooseGameMode}/> 
         : (this.state.gamePhase === 1 || this.state.gamePhase === 2)? <div className="menu-container next-phase">
             <button className="go-backBtn" onClick = {() => {this.fallBackALevel()}}>⬅</button>

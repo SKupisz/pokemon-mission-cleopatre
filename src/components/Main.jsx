@@ -1,8 +1,7 @@
 import React from "react";
 
 import Intro from "./gameHelpers/intro.jsx";
-import FightImage from "./gameHelpers/fightImages.jsx";
-import StatsBlock from "./gameHelpers/statsBlock.jsx";
+import LevelRendering from "./gameHelpers/levelRendering.jsx";
 import SkillsRendering from "./gameHelpers/skillsRendering.jsx";
 import WinningBanner from "./gameHelpers/winningBanner.jsx";
 
@@ -18,14 +17,16 @@ export default class Main extends React.Component{
                 maxHp: this.fightersGeneralData["fighters"][this.props.secondGamer]["stats"]["hp"],
                 currSta: this.fightersGeneralData["fighters"][this.props.secondGamer]["stats"]["sta"],
                 maxSta: this.fightersGeneralData["fighters"][this.props.secondGamer]["stats"]["sta"],
-                specialAttackPoints: 0
+                specialAttackPoints: 0,
+                sex: this.fightersGeneralData["fighters"][this.props.secondGamer]["sex"]
             },
             firstGamerStatus: {
                 currHp: this.fightersGeneralData["fighters"][this.props.firstGamer]["stats"]["hp"],
                 maxHp: this.fightersGeneralData["fighters"][this.props.firstGamer]["stats"]["hp"],
                 currSta: this.fightersGeneralData["fighters"][this.props.firstGamer]["stats"]["sta"],
                 maxSta: this.fightersGeneralData["fighters"][this.props.firstGamer]["stats"]["sta"],
-                specialAttackPoints: 0
+                specialAttackPoints: 0,
+                sex: this.fightersGeneralData["fighters"][this.props.firstGamer]["sex"]
             },
             firstGamerAttacks: this.fightersGeneralData["fighters"][this.props.firstGamer]["skills"],
             secondGamerAttacks: this.fightersGeneralData["fighters"][this.props.secondGamer]["skills"],
@@ -52,40 +53,26 @@ export default class Main extends React.Component{
     }
     nextTurn(hasDoneSomething){
         if(hasDoneSomething === false){
-            let StaminaStep = 1.5;
-            if(this.state.currentTurn === 1){
-                let operand = this.state.firstGamerStatus;
-                operand["currSta"]+=StaminaStep;
-                if(operand["currSta"] > operand["maxSta"]) operand["currSta"] = operand["maxSta"];
-                this.setState({
-                   firstGamerStatus: operand
-                }, () => {});
+            let StaminaStep = 1.5, searchInd = "firstGamerStatus";
+            if(this.state.currentTurn === -1){
+                searchInd = "secondGamerStatus";
             }
-            else{
-                let operand = this.state.secondGamerStatus;
-                operand["currSta"]+=StaminaStep;
-                if(operand["currSta"] > operand["maxSta"]) operand["currSta"] = operand["maxSta"];
-                this.setState({
-                    secondGamerStatus: operand
-                }, () => {});
-            }
+            let operand = this.state[searchInd];
+            operand["currSta"]+=StaminaStep;
+            if(operand["currSta"] > operand["maxSta"]) operand["currSta"] = operand["maxSta"];
+            let toPutToTheState = {};
+            toPutToTheState[searchInd] = operand;
+            this.setState(toPutToTheState, () => {});
         }
-        if(this.state.firstGamerStatus["currHp"] === 0){
+        if(this.state.firstGamerStatus["currHp"] === 0 || this.state.secondGamerStatus["currHp"] === 0){
             this.setState({
-                isEnded: -1
-            }, () => {});
-        }
-        else if(this.state.secondGamerStatus["currHp"] === 0){
-            this.setState({
-                isEnded: 1
+                isEnded: this.state.currentTurn
             }, () => {});
         }
         this.setState({
             currentTurn: this.state.currentTurn*(-1)
         }, () => {
-            if(this.state.currentTurn === -1 && this.props.gameType === 1){
-                this.manageAIturn();
-            }
+            if(this.state.currentTurn === -1 && this.props.gameType === 1) this.manageAIturn();
         });
     }
     surrender(){
@@ -106,22 +93,16 @@ export default class Main extends React.Component{
                     flag = true;
                     helper = aiAttacks[i][2].split(", ");
                     for(let j = 0 ; j < helper.length; j++){
-                        let getTheNumberOfHelping = this.getTheNumberFromTheSkill(helper[j]);
-                        if(helper[j][helper[j].length - 1] === "a") {
-                            aiBase["currSta"]+=getTheNumberOfHelping;
-                            if(aiBase["currSta"] > aiBase["maxSta"]) aiBase["currSta"] = aiBase["maxSta"];
-                        }
-                        else{
-                            aiBase["currHp"]+=getTheNumberOfHelping;
-                            if(aiBase["currHp"] > aiBase["maxHp"]) aiBase["currHp"] = aiBase["maxHp"]; 
-                        }
+                        let getTheNumberOfHelping = this.getTheNumberFromTheSkill(helper[j]), addingInd = "Hp";
+                        if(helper[j][helper[j].length - 1] === "a") addingInd = "Sta";
+                        aiBase["curr"+addingInd]+=getTheNumberOfHelping;
+                        if(aiBase["curr"+addingInd] > aiBase["max"+addingInd]) aiBase["curr"+addingInd] = aiBase["max"+addingInd];
                     }
                     break;
                 }
             }
         }
         if(aiBase["currHp"]/aiBase["maxHp"] > 0.4 || flag === false){
-            console.log("jest");
             let mostPowerfulAttackInd = -1, maxPower = 0, currentPower = 0;
             for(let i = 0 ; i < aiAttacks.length; i++){
                 if(aiAttacks[i][1] === "enemy" && aiAttacks[i][3] <= aiBase["currSta"]){
@@ -256,38 +237,22 @@ export default class Main extends React.Component{
             secondGeneralData = {this.fightersGeneralData["fighters"][this.props.secondGamer]}/>
             <section className="main-game">
                 <div className="game-characters">
-                    <div className="second-gamer-level gamer-level">
-
-                        <StatsBlock
-                        gamerData = {this.state.secondGamerStatus}
-                        wrapperClass = "stats"/>
-
-                        <FightImage 
-                            surroundingClasses = {this.state.currentTurn === -1 ? "image-surrounding second-surrounding block-center highlighted" : "image-surrounding second-surrounding block-center"}
-                            imageClasses = {"image block-center "+this.fightersGeneralData["fighters"][this.props.secondGamer]["photoClassName"]}/>
-
-                    </div>
-                    <div className="first-gamer-level gamer-level">
-
-                        <StatsBlock
-                        gamerData = {this.state.firstGamerStatus}
-                        wrapperClass = "stats first-stats"/>
-
-                        <FightImage 
-                            surroundingClasses = {this.state.currentTurn === 1 ? "image-surrounding first-surrounding block-center highlighted" : "image-surrounding first-surrounding block-center"}
-                            imageClasses = {"image block-center "+this.fightersGeneralData["fighters"][this.props.firstGamer]["photoClassName"]}/>
-
-                    </div>
+                    <LevelRendering levelClasses = "second-gamer-level gamer-level" 
+                    gamerStatsBlock = {[this.state.secondGamerStatus, "stats"]}
+                    gamerImage = {[this.state.currentTurn === -1 ? "image-surrounding second-surrounding block-center highlighted" : "image-surrounding second-surrounding block-center",
+                    "image block-center "+this.fightersGeneralData["fighters"][this.props.secondGamer]["photoClassName"]]}/>
+                    <LevelRendering levelClasses = "first-gamer-level gamer-level" 
+                    gamerStatsBlock = {[this.state.firstGamerStatus, "stats first-stats"]}
+                    gamerImage = {[this.state.currentTurn === 1 ? "image-surrounding first-surrounding block-center highlighted" : "image-surrounding first-surrounding block-center",
+                    "image block-center "+this.fightersGeneralData["fighters"][this.props.firstGamer]["photoClassName"]]}/>
                 </div>
                 <div className={this.state.currentTurn === 1 ? "steering first-gamer" : "steering second-gamer"}>
                     <header className = "steering-turn block-center">Tura gracza {this.state.currentTurn === 1 ? 1 : 2}</header>
                     {
                         this.props.gameType === 1 && this.state.currentTurn === -1 ? "" : <span>
                             <section className="skills-and-attacks block-center">
-                                {this.state.currentTurn === 1 ? <SkillsRendering skillsToMap = {this.state.firstGamerAttacks} 
-                                userData = {this.state.firstGamerStatus}
-                                handleTheAttack = {this.handleTheAttack}/>: <SkillsRendering skillsToMap = {this.state.secondGamerAttacks} 
-                                userData = {this.state.secondGamerStatus}
+                                {this.state.currentTurn === 1 ? <SkillsRendering skillsToMap = {this.state.firstGamerAttacks} userData = {this.state.firstGamerStatus}
+                                handleTheAttack = {this.handleTheAttack}/>: <SkillsRendering skillsToMap = {this.state.secondGamerAttacks} userData = {this.state.secondGamerStatus}
                                 handleTheAttack = {this.handleTheAttack}/>}
                             </section>
                             <div className="user-options">

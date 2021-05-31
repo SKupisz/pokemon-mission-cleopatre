@@ -7,6 +7,7 @@
                 "hp": 115,
                 "sta": 95
             },
+            "sex": "m",
             "skills": [
                 ["Magia Gimikis", "user", "+10HP, +10Sta", 22.5], 
                 ["Panowie nowi?", "enemy", "-7HP", 8.75], 
@@ -21,6 +22,7 @@
                 "hp": 140,
                 "sta": 110
             },
+            "sex": "m",
             "skills": [
                 ["Kto tu jest gruby?", "enemy", "-2HP", 2.5], 
                 ["Dzik power", "user", "+8HP", 8], 
@@ -35,6 +37,7 @@
                 "hp": 120,
                 "sta": 90
             },
+            "sex": "m",
             "skills": [
                 ["Plaga egipska", "enemy", "-15HP", 18.75], 
                 ["To kwestia zaplecza", "user", "+2HP, +5Sta", 4], 
@@ -49,6 +52,7 @@
                 "hp": 110,
                 "sta": 120
             },
+            "sex": "m",
             "skills": [
                 ["Plan trzymiesięczny", "user", "+3HP, +4Sta", 5], 
                 ["Takie tam stożki", "enemy", "-14HP", 17.5], 
@@ -63,6 +67,7 @@
                 "hp": 100,
                 "sta": 110
             },
+            "sex": "k",
             "skills": [
                 ["Ledwie prowincja?", "enemy", "-8HP", 10], 
                 ["To może... Trochę potrwać", "user", "+9HP", 16], 
@@ -77,6 +82,7 @@
                 "hp": 115,
                 "sta": 105
             },
+            "sex": "m",
             "skills": [
                 ["Paskudny charakterek", "enemy", "-7HP", 8.75], 
                 ["Są rzeczy niezmienne", "enemy", "-10HP", 12.5], 
@@ -91,6 +97,7 @@
                 "hp": 108,
                 "sta": 110
             },
+            "sex": "m",
             "skills": [
                 ["Sen o sandałach", "enemy", "-4HP", 5], 
                 ["Imperium kontratakuje", "enemy", "-14HP", 17.5], 
@@ -105,6 +112,7 @@
                 "hp": 115,
                 "sta": 110
             },
+            "sex": "m",
             "skills": [
                 ["Express do krokodyli", "enemy", "-6HP", 7.5], 
                 ["Poczuj w sobie siłę lwa", "enemy", "-17HP", 21.25], 
@@ -119,6 +127,7 @@
                 "hp": 120,
                 "sta": 110
             },
+            "sex": "m",
             "skills": [
                 ["Atak szakali", "enemy", "-9HP", 11.25], 
                 ["Zamknięcie w grobowcu", "enemy", "-12HP", 15], 
@@ -133,6 +142,7 @@
                 "hp": 110,
                 "sta": 120
             },
+            "sex": "m",
             "skills": [
                 ["Idealna Matura", "enemy", "-6Sta", 7.5], 
                 ["Ketebese!", "enemy", "-13HP", 16.25], 
@@ -147,6 +157,7 @@
                 "hp": 118,
                 "sta": 110
             },
+            "sex": "m",
             "skills": [
                 ["Refuj bukszpryt", "enemy", "-3Sta", 3.75], 
                 ["Ga-ga-galowie", "user", "+6HP, -7Sta", 10], 
@@ -161,6 +172,7 @@
                 "hp": 110,
                 "sta": 105
             },
+            "sex": "k",
             "skills": [
                 ["Coś przerywa", "enemy", "-2Sta", 2.5], 
                 ["Rzut kolumną", "enemy", "-16HP", 20], 
