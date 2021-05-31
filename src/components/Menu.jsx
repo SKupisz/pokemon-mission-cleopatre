@@ -1,5 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Navigation } from 'swiper/core';
 
 import ChoosingGameMode from "./menuHelpers/choosingGameMode.jsx";
 import MenuMusic from "./menuHelpers/menuMusic.jsx";
@@ -9,6 +10,9 @@ import snoopdogg from "../music/asterix_i_obelix.mp3";
 import fighting from "../music/krwawobrody_theme.mp3";
 
 import 'swiper/swiper.scss';
+import "swiper/components/navigation/navigation.min.css";
+
+SwiperCore.use([Navigation]);
 
 export default class Menu extends React.Component{
     constructor(props){
@@ -18,8 +22,8 @@ export default class Menu extends React.Component{
         this.menuMusicRef = React.createRef();
 
         this.state = {
-            gameMode: 1, // 1 - single player, 2 - two players
-            gamePhase: 4, // phases: 0 - first menu, 1 - first gamer choose, 2 - second gamer choose, 3 - AI choose, 4 - fight
+            gameMode: 0, // 1 - single player, 2 - two players
+            gamePhase: -1, // phases: 0 - first menu, 1 - first gamer choose, 2 - second gamer choose, 3 - AI choose, 4 - fight
             aiOruser: 0,
             chosenCharacterFirst: 0,
             chosenCharacterSecond: 0,
@@ -128,16 +132,18 @@ export default class Menu extends React.Component{
     render(){
         return <div>
             <MenuMusic
-            source1 = {[snoopdogg, this.state.currentMusicVolume, this.state.whichMusicPlaying, this.menuMusicRef]}
-            source2 = {[fighting, this.state.currentMusicVolume, !this.state.whichMusicPlaying, this.fightingMusicRef]}/> 
+                source1 = {[snoopdogg, this.state.currentMusicVolume, this.state.whichMusicPlaying, this.menuMusicRef]}
+                source2 = {[fighting, this.state.currentMusicVolume, !this.state.whichMusicPlaying, this.fightingMusicRef]}/> 
             {this.state.gamePhase === 0 ? <ChoosingGameMode chooseGameMode = {this.chooseGameMode}/> 
         : (this.state.gamePhase === 1 || this.state.gamePhase === 2)? <div className="menu-container next-phase">
             <button className="go-backBtn" onClick = {() => {this.fallBackALevel()}}>⬅</button>
             <header className="main-header choosing-header block-center">{this.state.gameMode === 1 ? "Wybierz postać" : "Wybierz postać - gracz "+this.state.gamePhase}</header>
             <div className="instruction block-center">Przewijaj w poziomie, by wybierać kolejne postacie</div>
             <section className="gameOptions-characters block-center">
-                <Swiper spaceBetween={10}
-                    slidesPerView={1}>
+                <Swiper spaceBetween={0}
+                    slidesPerView={1}
+                    loop = {true}
+                    navigation = {true}>
                 {this.characters.map((elem,index) => <SwiperSlide><div className="gameOption-widget" onClick = {() => {this.chooseCharacter(index);}}>
                     <header className="widget-header block-center">{elem["name"]}</header>
                     <div className={"photo-wrapper block-center "+elem["photoClassName"]}></div>
@@ -149,7 +155,9 @@ export default class Menu extends React.Component{
                         {elem["skills"].map(skill => <div className="attack-wrapper block-center">
                             <div className="attack-skills attack-name">{skill[0]}</div>
                             <div className="attack-skills attack-specifics">{skill[2]}</div>
-                            <div className="attack-skills attack-forWho">{skill[1] === "user" ? "🟩" : "🟥"}</div>
+                            <div className="attack-skills attack-forWho">
+                                <div className={skill[1] === "user" ? "attack-marking user-marking" : "attack-marking enemy-marking"}></div>
+                            </div>
                         </div>)}
                     </section>
                 </div></SwiperSlide>)}
@@ -160,3 +168,4 @@ export default class Menu extends React.Component{
             secondGamer = {this.state.chosenCharacterSecond} goBack = {this.goBack}/> : ""}</div>
     }
 }
+/**/

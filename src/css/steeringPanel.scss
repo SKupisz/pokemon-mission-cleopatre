@@ -110,7 +110,7 @@
         }
         .skills-and-attacks{
             width: calc(100% - 10px);
-            font-size: 0.85em;
+            font-size: 0.8em;
         }
     }
 }
@@ -136,6 +136,12 @@
                 display: inline-block;
                 margin: 4px;
                 font-size: 0.8em;
+                .healing,.attack,.cost{
+                    width: calc(90% - 12px);
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
                 .non-rwd{
                     display: none;
                 }

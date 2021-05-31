@@ -89,6 +89,17 @@ $characters: "asterix" "obelix" "marnypopis" "cezar" "panoramix" "ceplus" "numer
                 }
                 .attack-forWho{
                     font-size: 0.7em;
+                    .attack-marking{
+                        width: 1.3em;
+                        height: 1.3em;
+                        border: 1px solid #111;
+                    }
+                    .user-marking{
+                        background: green;
+                    }
+                    .enemy-marking{
+                        background: red;
+                    }
                 }
             }
         }
@@ -99,13 +110,34 @@ $characters: "asterix" "obelix" "marnypopis" "cezar" "panoramix" "ceplus" "numer
 }
 @media screen and (max-width: 1196px) {
     .gameOptions-characters{
-        width: calc(50% - 20px);
+        width: calc(60% - 20px);
         .gameOption-widget{
             font-size: 0.8em;
             .stats-wrapper{
                 width: calc(100% - 20px);
             }
         }
+    }
+}
+.swiper-button-next, .swiper-button-prev{
+    transform: scale(0.8);
+    color: rgb(230, 230, 230);
+    padding: 2px;
+}
+.swiper-button-next{
+    right: -3px !important;
+}
+.swiper-button-prev{
+    left: -3px !important;
+}
+@media screen and (max-width: 860px) {
+    .gameOptions-characters{
+        width: calc(65% - 20px);
+        text-align: center;
+        align-items: center;
+    }
+    .swiper-button-prev,.swiper-button-next{
+        display: none !important;
     }
 }
 @media screen and (max-width: 657px) {

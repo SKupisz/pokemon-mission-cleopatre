@@ -34,7 +34,7 @@ export default class SkillsRendering extends React.Component{
                     <div className={elem[1] === "user" ? "describe-elem healing" : "describe-elem attack"}>
                         {elem[2]}
                     </div>
-                    <div className="describe-elem non-rwd">{final === 1 ? "Dostępne" : "Niedostępne"}</div>
+                    <div className="describe-elem cost">{elem[3] +" "+ (elem[1] === "user" ? "SuperSta" : "Sta")}</div>
                 </div>
             </div>; 
         });
