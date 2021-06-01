@@ -53,7 +53,7 @@ export default class Main extends React.Component{
     }
     nextTurn(hasDoneSomething){
         if(hasDoneSomething === false){
-            let StaminaStep = 1.5, searchInd = "firstGamerStatus";
+            let StaminaStep = 2.5, searchInd = "firstGamerStatus";
             if(this.state.currentTurn === -1){
                 searchInd = "secondGamerStatus";
             }
@@ -158,27 +158,15 @@ export default class Main extends React.Component{
         let countSpecialPoints = 0;
         for(let i = 0 ; i < infoAboutTheAttack.length; i++){
             let getTheNumber = this.getTheNumberFromTheSkill(infoAboutTheAttack[i]);
-            let toAnalyze = infoAboutTheAttack[i];
-            if(toAnalyze[toAnalyze.length - 1].toLowerCase() === "a"){
-                final["currSta"]+=getTheNumber;
-                if(ifAttack){
-                    if(final["currSta"] < 0) final["currSta"] = 0;
-                }
-                else{
-                    if(final["currSta"] > final["maxSta"]) final["currSta"] = final["maxSta"];
-                    final["specialAttackPoints"]-=(getTheNumber*0.75);
-                }
+            let toAnalyze = infoAboutTheAttack[i], ending = "Hp";
+            if(toAnalyze[toAnalyze.length - 1].toLowerCase() === "a") ending = "Sta";
+            final["curr"+ending]+=getTheNumber;
+            if(ifAttack){
+                if(final["curr"+ending] < 0) final["curr"+ending] = 0;
             }
             else{
-                final["currHp"]+=getTheNumber;
-                if(ifAttack){
-                    if(final["currHp"] < 0) final["currHp"] = 0;
-                    countSpecialPoints-=(getTheNumber*0.5);
-                }
-                else{
-                    if(final["currHp"] > final["maxHp"]) final["currHp"] = final["maxHp"];
-                    final["specialAttackPoints"]-=getTheNumber;
-                }
+                if(final["curr"+ending] > final["max"+ending]) final["curr"+ending] = final["max"+ending];
+                final["specialAttackPoints"]-=(getTheNumber*0.75);
             }
         }
         if(operand[1] === "user"){

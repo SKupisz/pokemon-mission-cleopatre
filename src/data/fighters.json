@@ -4,14 +4,14 @@
             "name": "Asterix",
             "photoClassName": "asterix",
             "stats": {
-                "hp": 115,
-                "sta": 95
+                "hp": 127,
+                "sta": 114
             },
             "sex": "m",
             "skills": [
-                ["Magia Gimikis", "user", "+10HP, +10Sta", 22.5], 
+                ["Magia Gimikis", "user", "+10HP, +10Sta", 18], 
                 ["Panowie nowi?", "enemy", "-7HP", 8.75], 
-                ["Praktyczna rzecz!", "user", "+6HP", 4], 
+                ["Praktyczna rzecz!", "user", "+6HP", 6], 
                 ["Argument nie do podważenia", "enemy", "-12HP", 15]
             ]
         },
@@ -19,8 +19,8 @@
             "name": "Obelix",
             "photoClassName": "obelix",
             "stats": {
-                "hp": 140,
-                "sta": 110
+                "hp": 154,
+                "sta": 132
             },
             "sex": "m",
             "skills": [
@@ -34,104 +34,104 @@
             "name": "Marnypopis",
             "photoClassName": "marnypopis",
             "stats": {
-                "hp": 120,
-                "sta": 90
+                "hp": 132,
+                "sta": 108
             },
             "sex": "m",
             "skills": [
                 ["Plaga egipska", "enemy", "-15HP", 18.75], 
-                ["To kwestia zaplecza", "user", "+2HP, +5Sta", 4], 
+                ["To kwestia zaplecza", "user", "+2HP, +5Sta", 6], 
                 ["Klasyczny sierpowy", "enemy", "-18HP", 22.5], 
-                ["Immakuruku eruczene", "user", "+10Sta", 20]
+                ["Immakuruku eruczene", "user", "+10Sta", 8]
             ]
         },
         {
             "name": "Cezar",
             "photoClassName": "cezar",
             "stats": {
-                "hp": 110,
-                "sta": 120
+                "hp": 121,
+                "sta": 144
             },
             "sex": "m",
             "skills": [
-                ["Plan trzymiesięczny", "user", "+3HP, +4Sta", 5], 
+                ["Plan trzymiesięczny", "user", "+3HP, +4Sta", 6], 
                 ["Takie tam stożki", "enemy", "-14HP", 17.5], 
                 ["Si vic pacem", "enemy", "-6HP", 7.5], 
-                ["Zestawsuperplusie?", "user", "+8Sta", 17]
+                ["Zestawsuperplusie?", "user", "+8Sta", 6.5]
             ]
         },
         {
             "name": "Kleopatra",
             "photoClassName": "cleopatra",
             "stats": {
-                "hp": 100,
-                "sta": 110
+                "hp": 110,
+                "sta": 132
             },
             "sex": "k",
             "skills": [
                 ["Ledwie prowincja?", "enemy", "-8HP", 10], 
-                ["To może... Trochę potrwać", "user", "+9HP", 16], 
+                ["To może... Trochę potrwać", "user", "+9HP", 9], 
                 ["DOSYĆ!", "enemy", "-19HP", 23.75],
-                ["Grecka krew", "user", "+7HP", 12]
+                ["Grecka krew", "user", "+7HP", 7]
             ]
         },
         {
             "name": "Panoramix",
             "photoClassName": "panoramix",
             "stats": {
-                "hp": 115,
-                "sta": 105
+                "hp": 127,
+                "sta": 126
             },
             "sex": "m",
             "skills": [
                 ["Paskudny charakterek", "enemy", "-7HP", 8.75], 
                 ["Są rzeczy niezmienne", "enemy", "-10HP", 12.5], 
-                ["Kalafiorowa strike", "user", "+6HP", 10], 
-                ["Nowy program taryfowy", "user", "+4HP, +8Sta", 20]
+                ["Kalafiorowa strike", "user", "+6HP", 6], 
+                ["Nowy program taryfowy", "user", "+4HP, +8Sta", 10.5]
             ]
         },
         {
             "name": "Gajus Ceplus",
             "photoClassName": "ceplus",
             "stats": {
-                "hp": 108,
-                "sta": 110
+                "hp": 119,
+                "sta": 132
             },
             "sex": "m",
             "skills": [
                 ["Sen o sandałach", "enemy", "-4HP", 5], 
                 ["Imperium kontratakuje", "enemy", "-14HP", 17.5], 
                 ["Ponowić natarcie!", "enemy", "-20HP", 25], 
-                ["Cezar mówi poszli won!", "user", "+8Sta", 13]
+                ["Cezar mówi poszli won!", "user", "+8Sta", 6.5]
             ]
         },
         {
             "name": "Numernabis",
             "photoClassName": "numernabis",
             "stats": {
-                "hp": 115,
-                "sta": 110
+                "hp": 127,
+                "sta": 132
             },
             "sex": "m",
             "skills": [
                 ["Express do krokodyli", "enemy", "-6HP", 7.5], 
                 ["Poczuj w sobie siłę lwa", "enemy", "-17HP", 21.25], 
-                ["Era samoobsługi", "user", "+6Sta", 10],
-                ["Chyba oberwałem", "user", "+8HP", 14]
+                ["Era samoobsługi", "user", "+6Sta", 5],
+                ["Chyba oberwałem", "user", "+8HP", 8]
             ]
         },
         {
             "name": "Nikosis",
             "photoClassName": "nikosis",
             "stats": {
-                "hp": 120,
-                "sta": 110
+                "hp": 132,
+                "sta": 126
             },
             "sex": "m",
             "skills": [
                 ["Atak szakali", "enemy", "-9HP", 11.25], 
                 ["Zamknięcie w grobowcu", "enemy", "-12HP", 15], 
-                ["Spoko kiecka", "user", "+5HP, +9Sta", 21],
+                ["Spoko kiecka", "user", "+5HP, +9Sta", 12],
                 ["Kogo zabić?", "enemy", "-18HP", 22.5]
             ]
         },
@@ -139,45 +139,60 @@
             "name": "Otis",
             "photoClassName": "otis",
             "stats": {
-                "hp": 110,
-                "sta": 120
+                "hp": 121,
+                "sta": 144
             },
             "sex": "m",
             "skills": [
                 ["Idealna Matura", "enemy", "-6Sta", 7.5], 
                 ["Ketebese!", "enemy", "-13HP", 16.25], 
                 ["Matematyczna precyzja", "enemy", "-7HP", 8.75],
-                ["Umiłowanie życia", "user", "+8HP", 12]
+                ["Umiłowanie życia", "user", "+8HP", 8]
             ]
         },
         {
             "name": "Krwawobrody",
             "photoClassName": "redbeard",
             "stats": {
-                "hp": 118,
-                "sta": 110
+                "hp": 130,
+                "sta": 132
             },
             "sex": "m",
             "skills": [
                 ["Refuj bukszpryt", "enemy", "-3Sta", 3.75], 
-                ["Ga-ga-galowie", "user", "+6HP, -7Sta", 10], 
+                ["Ga-ga-galowie", "user", "+6HP, -7Sta", 11.5], 
                 ["Siekiera", "enemy", "-15HP", 18.75],
-                ["Zorganizowany pośpiech", "user", "+2Sta", 5]
+                ["Zorganizowany pośpiech", "user", "+2Sta", 1.5]
             ]
         },
         {
             "name": "Idea",
             "photoClassName": "idea",
             "stats": {
-                "hp": 110,
-                "sta": 105
+                "hp": 121,
+                "sta": 126
             },
             "sex": "k",
             "skills": [
                 ["Coś przerywa", "enemy", "-2Sta", 2.5], 
                 ["Rzut kolumną", "enemy", "-16HP", 20], 
                 ["Za dużo batów!", "enemy", "-9HP", 11.25],
-                ["Dobrze gada!", "user", "+4HP, +5Sta", 5]
+                ["Dobrze gada!", "user", "+4HP, +5Sta", 8]
+            ]
+        },
+        {
+            "name": "Szczękościsk",
+            "photoClassName": "pyradonis",
+            "stats": {
+                "hp": 116,
+                "sta": 120
+            },
+            "sex": "m",
+            "skills": [
+                ["Księgowość", "user", "+4Sta", 3], 
+                ["Podejmuję kroki", "enemy", "-7Sta", 8.75], 
+                ["A to agregat", "enemy", "-14HP", 17.5],
+                ["Brak zrozumienia", "user", "-6Sta, +5HP", 10]
             ]
         }
     ]

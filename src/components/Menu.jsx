@@ -92,7 +92,7 @@ export default class Menu extends React.Component{
                 currentMusicVolume: 0.8,
                 whichMusicPlaying: false
             }, () => {
-                this.menuMusicRef.current.stop();
+                //this.menuMusicRef.current.stop();
             });
         }
     }
@@ -117,7 +117,7 @@ export default class Menu extends React.Component{
                 whichMusicPlaying: true
             }, () => {});
         }
-        this.fightingMusicRef.current.stop();
+        //this.fightingMusicRef.current.stop();
     }
     fallBackALevel(){
         this.setState({
