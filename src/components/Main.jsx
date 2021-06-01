@@ -69,11 +69,13 @@ export default class Main extends React.Component{
                 isEnded: this.state.currentTurn
             }, () => {});
         }
-        this.setState({
-            currentTurn: this.state.currentTurn*(-1)
-        }, () => {
-            if(this.state.currentTurn === -1 && this.props.gameType === 1) this.manageAIturn();
-        });
+        else{   
+            this.setState({
+                currentTurn: this.state.currentTurn*(-1)
+            }, () => {
+                if(this.state.currentTurn === -1 && this.props.gameType === 1) this.manageAIturn();
+            });
+        }
     }
     surrender(){
         if(this.props.gameType === 1 && this.state.currentTurn === -1) return;
