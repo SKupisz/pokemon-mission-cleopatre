@@ -33,7 +33,7 @@ export default class Menu extends React.Component{
             currentMusicVolume: 1.0,
             whichMusicPlaying: true,
             ifPanelOn: false,
-            currentVolumePredictor: 0,
+            currentVolumePredictor: 1.0,
             currentBrightnessPredictor: 100
         };
         this.fighters = require("../data/fighters.json");

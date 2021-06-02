@@ -39,3 +39,22 @@
         overflow-y: auto;
     }
 }
+@keyframes userAttacked {
+    0%{
+        transform: translateX(0px);
+    }
+    25%{
+        transform: translateX(-4px);
+    }
+    75%{
+        transform: translateX(4px);
+    }
+    100%{
+        transform: translateX(0px);
+    }
+}
+@keyframes userHealed {
+    50%{
+        transform: scale(1.3);
+    }
+}

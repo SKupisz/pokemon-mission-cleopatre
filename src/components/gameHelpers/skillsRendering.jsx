@@ -4,21 +4,26 @@ export default class SkillsRendering extends React.Component{
     render(){
         return this.props.skillsToMap.map((elem,index) => {
             let final = 0;
-            if(elem[1] === "enemy"){
-                if(this.props.userData["currSta"] - elem[3] >= 0) final = 1;
-                else final = -1;
+            if(this.props.mappingForbidden === true){
+                final = -1;
             }
             else{
-                if(this.props.userData["specialAttackPoints"] - elem[3] >= 0) final = 1;
-                else final = -1;
-                if(elem[2].indexOf("Sta") !== -1){
-                    let getTheLevelOfStamina = elem[2].substr(elem[2].indexOf("Sta")-2,2);
-                    if(getTheLevelOfStamina.charAt(0) !== '+' && getTheLevelOfStamina.charAt(0) !== '-'){
-                        getTheLevelOfStamina = elem[2].substr(elem[2].indexOf("Sta")-3,2);
-                    }
-                    getTheLevelOfStamina = Number(getTheLevelOfStamina);
-                    if(getTheLevelOfStamina < 0 && this.props.userData["currSta"] + getTheLevelOfStamina < 0){
-                        final = -1;
+                if(elem[1] === "enemy"){
+                    if(this.props.userData["currSta"] - elem[3] >= 0) final = 1;
+                    else final = -1;
+                }
+                else{
+                    if(this.props.userData["specialAttackPoints"] - elem[3] >= 0) final = 1;
+                    else final = -1;
+                    if(elem[2].indexOf("Sta") !== -1){
+                        let getTheLevelOfStamina = elem[2].substr(elem[2].indexOf("Sta")-2,2);
+                        if(getTheLevelOfStamina.charAt(0) !== '+' && getTheLevelOfStamina.charAt(0) !== '-'){
+                            getTheLevelOfStamina = elem[2].substr(elem[2].indexOf("Sta")-3,2);
+                        }
+                        getTheLevelOfStamina = Number(getTheLevelOfStamina);
+                        if(getTheLevelOfStamina < 0 && this.props.userData["currSta"] + getTheLevelOfStamina < 0){
+                            final = -1;
+                        }
                     }
                 }
             }

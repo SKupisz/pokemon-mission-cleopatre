@@ -9,8 +9,8 @@
 .options-panel{
     width: calc(100% - 10px);
     padding: 5px;
-    height: calc(100% - 10px);
-    position: fixed;
+    min-height: calc(100vh - 10px);
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 9;

@@ -34,7 +34,8 @@ export default class Main extends React.Component{
             secondGamerAttacks: this.fightersGeneralData["fighters"][this.props.secondGamer]["skills"],
             isLoaded: -1,
             currentTurn: 1,
-            isEnded: 0
+            isEnded: 0,
+            doingNextTurnMove: false
         };
 
         this.state = this.defaultSet;
@@ -54,30 +55,41 @@ export default class Main extends React.Component{
         return getTheNumber;
     }
     nextTurn(hasDoneSomething){
-        if(hasDoneSomething === false){
-            let StaminaStep = 2.5, searchInd = "firstGamerStatus";
-            if(this.state.currentTurn === -1){
-                searchInd = "secondGamerStatus";
-            }
-            let operand = this.state[searchInd];
-            operand["currSta"]+=StaminaStep;
-            if(operand["currSta"] > operand["maxSta"]) operand["currSta"] = operand["maxSta"];
-            let toPutToTheState = {};
-            toPutToTheState[searchInd] = operand;
-            this.setState(toPutToTheState, () => {});
-        }
-        if(this.state.firstGamerStatus["currHp"] === 0 || this.state.secondGamerStatus["currHp"] === 0){
-            this.setState({
-                isEnded: this.state.currentTurn
-            }, () => {});
-        }
-        else{   
-            this.setState({
-                currentTurn: this.state.currentTurn*(-1)
-            }, () => {
-                if(this.state.currentTurn === -1 && this.props.gameType === 1) this.manageAIturn();
-            });
-        }
+        this.setState({
+            doingNextTurnMove: true
+        }, () => {
+            setTimeout( () => {
+                let StaminaStep = 2.5, searchInd = "firstGamerStatus";
+                if(this.state.currentTurn === -1){
+                    searchInd = "secondGamerStatus";
+                }
+                let operand = this.state[searchInd];
+                if(hasDoneSomething === false){
+                    operand["currSta"]+=StaminaStep;
+                    if(operand["currSta"] > operand["maxSta"]) operand["currSta"] = operand["maxSta"];
+                }
+                operand["movingClasses"] = "";
+                let toPutToTheState = {};
+                toPutToTheState[searchInd] = operand;
+                this.setState(toPutToTheState, () => {});
+                if(this.state.firstGamerStatus["currHp"] === 0 || this.state.secondGamerStatus["currHp"] === 0){
+                    this.setState({
+                        isEnded: this.state.currentTurn
+                    }, () => {});
+                }
+                else{   
+                    this.setState({
+                        currentTurn: this.state.currentTurn*(-1),
+                        doingNextTurnMove: false
+                    }, () => {
+                        if(operand["movingClasses"] === "user-healed") {
+                            return;
+                        }
+                        else if(this.state.currentTurn === -1 && this.props.gameType === 1) this.manageAIturn();
+                    });
+                }
+            },200);
+        });
     }
     surrender(){
         if(this.props.gameType === 1 && this.state.currentTurn === -1) return;
@@ -102,6 +114,7 @@ export default class Main extends React.Component{
                         aiBase["curr"+addingInd]+=getTheNumberOfHelping;
                         if(aiBase["curr"+addingInd] > aiBase["max"+addingInd]) aiBase["curr"+addingInd] = aiBase["max"+addingInd];
                     }
+                    aiBase["movingClasses"] = "user-healed";
                     break;
                 }
             }
@@ -129,8 +142,10 @@ export default class Main extends React.Component{
                     let playerBaseInd = helper[j][helper[j].length - 1] === "a" ? "currSta" : "currHp";
                     playerBase[playerBaseInd]+=getTheNumberOfHelping;
                     if(playerBase[playerBaseInd] < 0) playerBase[playerBaseInd] = 0;
+                    aiBase["specialAttackPoints"]-=(getTheNumberOfHelping*0.25);
                 }
                 aiBase["currSta"]-=aiAttacks[mostPowerfulAttackInd][3];
+                playerBase["movingClasses"]="user-attacked";
             }
             else{
                 ifDoingNothing = false;
@@ -167,6 +182,7 @@ export default class Main extends React.Component{
             final["curr"+ending]+=getTheNumber;
             if(ifAttack){
                 if(final["curr"+ending] < 0) final["curr"+ending] = 0;
+                countSpecialPoints-=(getTheNumber*0.25);
             }
             else{
                 if(final["curr"+ending] > final["max"+ending]) final["curr"+ending] = final["max"+ending];
@@ -174,7 +190,7 @@ export default class Main extends React.Component{
             }
         }
         if(operand[1] === "user"){
-            final["movinClasses"] = "user-healed";
+            final['movingClasses'] = "user-healed";
             if(this.state.currentTurn === 1){
                 this.setState({
                     firstGamerStatus: final
@@ -187,7 +203,7 @@ export default class Main extends React.Component{
             }
         }
         else{
-            final["movinClasses"] = "user-attacked";
+            final["movingClasses"] = "user-attacked";
             if(this.state.currentTurn === 1){
                 this.setState({
                     secondGamerStatus: final
@@ -209,7 +225,7 @@ export default class Main extends React.Component{
                     finalOperand["specialAttackPoints"]+=countSpecialPoints;
                     this.setState({
                         secondGamerStatus: finalOperand
-                    }, () => {this.nextTurn(true)});
+                    }, () => {this.nextTurn(true);});
                 });
             }
         }
@@ -233,7 +249,8 @@ export default class Main extends React.Component{
                 <div className="game-characters">
                     <LevelRendering levelClasses = "second-gamer-level gamer-level" 
                     gamerStatsBlock = {[this.state.secondGamerStatus, "stats"]}
-                    gamerImage = {[this.state.currentTurn === -1 ? "image-surrounding second-surrounding block-center highlighted" : "image-surrounding second-surrounding block-center",
+                    gamerImage = {[this.state.currentTurn === -1 ? "image-surrounding second-surrounding block-center highlighted "+this.state.secondGamerStatus["movingClasses"] : 
+                    "image-surrounding second-surrounding block-center "+this.state.secondGamerStatus["movingClasses"],
                     "image block-center "+this.fightersGeneralData["fighters"][this.props.secondGamer]["photoClassName"]]}/>
                     <LevelRendering levelClasses = "first-gamer-level gamer-level" 
                     gamerStatsBlock = {[this.state.firstGamerStatus, "stats first-stats"]}
@@ -247,8 +264,8 @@ export default class Main extends React.Component{
                         this.props.gameType === 1 && this.state.currentTurn === -1 ? "" : <span>
                             <section className="skills-and-attacks block-center">
                                 {this.state.currentTurn === 1 ? <SkillsRendering skillsToMap = {this.state.firstGamerAttacks} userData = {this.state.firstGamerStatus}
-                                handleTheAttack = {this.handleTheAttack}/>: <SkillsRendering skillsToMap = {this.state.secondGamerAttacks} userData = {this.state.secondGamerStatus}
-                                handleTheAttack = {this.handleTheAttack}/>}
+                                handleTheAttack = {this.handleTheAttack} mappingForbidden = {this.state.doingNextTurnMove}/>: <SkillsRendering skillsToMap = {this.state.secondGamerAttacks} userData = {this.state.secondGamerStatus}
+                                handleTheAttack = {this.handleTheAttack} mappingForbidden = {this.state.doingNextTurnMove}/>}
                             </section>
                             <div className="user-options">
                                 <button className = "skip-turn block-center" onClick = {() => {this.nextTurn(false)}}>Pomiń</button>
