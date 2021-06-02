@@ -8,7 +8,7 @@ const MenuMusic = ({source1, source2}) => { // source structure - music file, vo
                 ref = {source1[3]}/> 
             <ReactHowler src={source2[0]} volume = {source2[1]} 
                 playing = {source2[2]} loop = {true}
-                ref = {source2[3]}/> 
+                ref = {source2[3]}/>
     </span>
 }
 

@@ -11,6 +11,9 @@ export default class ChoosingGameMode extends React.Component{
             <Link to = "/about">
                 <button className="credits-btn">Credits</button>
             </Link>
+            <Link to = "/help">
+                <button className="credits-btn">Poradnik</button>
+            </Link>
         </section>
     </div> 
     }

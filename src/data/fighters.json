@@ -194,6 +194,21 @@
                 ["A to agregat", "enemy", "-14HP", 17.5],
                 ["Brak zrozumienia", "user", "-6Sta, +5HP", 10]
             ]
+        },
+        {
+            "name": "Harimatis",
+            "photoClassName": "harimatis",
+            "stats": {
+                "hp": 120,
+                "sta": 115
+            },
+            "sex": "m",
+            "skills": [
+                ["Widać mnie", "enemy", "-8HP", 10], 
+                ["Nie widać", "enemy", "-3Sta", 3.75], 
+                ["Trochę widać", "enemy", "-10HP", 12.5],
+                ["Chłop z jajami", "user", "+4Sta, +4HP", 9]
+            ]
         }
     ]
 }

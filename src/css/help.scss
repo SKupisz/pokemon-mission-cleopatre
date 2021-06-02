@@ -1,0 +1,133 @@
+.help-container{
+    .main-header{
+        margin-bottom: 3vh;
+    }
+    a{
+        text-decoration: none;
+        color: black;
+    }
+    .going-back-btn{
+        width: calc(60% - 20px);
+        padding: 20px 10px;
+        font-size: 2.1em;
+        font-family: "Pattaya";
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: filter 0.4s;
+        background: rgba(255, 255, 255, 0.8);
+    }
+    .going-back-btn:hover{
+        filter: brightness(70%);
+    }
+}
+.helper-wrapper{
+    width: 80%;
+    text-align: center;
+    margin-bottom: 5vh;
+}
+.helper-stage{
+    width: calc(100% - 10px);
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    height: 60vh;
+    border-radius: 10px;
+    font-family: "Pattaya";
+    overflow-y: auto;
+    .helper-stage-header, .sub-header{
+        width: calc(90% - 20px);
+        padding: 10px;
+        text-align: center;
+        font-size: 2.9em;
+        margin-bottom: 0.5vh;
+    }
+    .sub-header{
+        width: calc(80% - 20px);
+        font-size: 1.4em;
+        margin-bottom: 4vh;
+    }
+    .game-modes{
+        width: calc(90% - 10px);
+        padding: 5px;
+        text-align: center;
+        font-family: "Bebas Neue",sans-serif;
+        .game-mode-wrapper{
+            display: inline-block;
+            width: calc(50% - 10px);
+            padding: 5px;
+            vertical-align: top;
+            .game-mode-header{
+                width: calc(90% - 10px);
+                padding: 5px;
+                text-align: center;
+                font-size: 1.6em;
+                margin-bottom: 6vh;
+            }
+            .game-mode-desc{
+                font-size: 1em;
+            }
+        }
+    }
+    .choosing-describe,.game-describe{
+        width: calc(80% - 20px);
+        padding: 10px;
+        text-align: center;
+        font-size: 1.2em;
+        font-family: "Bebas Neue",sans-serif;
+        letter-spacing: 0.03em;
+        line-height: 1.6em;
+    }
+}
+@media screen and (max-width: 827px) {
+    .helper-stage{
+        font-size: 0.8em;
+        .game-modes{
+            width: calc(100% - 10px);
+            .game-mode-wrapper{
+                width: calc(80% - 10px);
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 4vh;
+                font-size: 1.3em;
+                .game-mode-header{
+                    margin-bottom: 1.5vh;
+                }
+            }
+        }
+        .choosing-describe,.game-describe{
+            width: calc(100% - 20px);
+        }
+    }
+    .help-container{
+        .going-back-btn{
+            width: calc(80% - 20px);
+            font-size: 1.7em;
+        }
+    }
+}
+@media screen and (max-width: 491px) {
+    .helper-wrapper{
+        width: 90%;
+    }
+}
+@media screen and (max-width: 372px) {
+    .helper-stage{
+        .game-modes{
+            .game-mode-wrapper{
+                width: calc(100% - 10px);
+            }
+        }
+        .choosing-describe,.game-describe{
+            font-size: 1.1em;
+            letter-spacing: 0.03em;
+            line-height: 1.6em;
+        }
+    }
+    .help-container{
+        .going-back-btn{
+            width: calc(90% - 20px);
+            font-size: 1.1em;
+        }
+    }
+}
