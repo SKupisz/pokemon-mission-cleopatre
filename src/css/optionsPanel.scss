@@ -1,0 +1,83 @@
+@keyframes launchOptionsPanel {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.options-panel{
+    width: calc(100% - 10px);
+    padding: 5px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 7;
+    opacity: 0;
+    animation: launchOptionsPanel 0.2s linear 1 forwards;
+    background: rgba(10,10,10,.9);
+    .volume-container{
+        color: white;
+        width: calc(30% - 20px);
+        padding: 10px;
+        text-align: center;
+        margin-bottom: 2vh;
+        .option-name{
+            font-family: "Bebas Neue",sans-serif;
+            font-size: 1.8em;
+            letter-spacing: 0.09em;
+        }
+        .volume-item{
+            font-size: 1.9em;
+        }
+        .slider{
+            color: white;
+            width: 90%;
+            .MuiSlider-track{
+                background: red;
+            }
+        }
+    }
+    .brightness-container{
+        margin-bottom: 9vh;
+    }
+    .going-back-button{
+        width: calc(30% - 20px);
+        padding: 10px;
+        font-size: 1.4em;
+        font-family: "Bebas Neue",sans-serif;
+        cursor: pointer;
+        transition: filter 0.4s;
+        border: none;
+        border-radius: 10px;
+        background: rgba(240,240,240,.9);
+    }
+    .going-back-button:hover{
+        filter: brightness(70%);
+    }
+}
+@media screen and (max-width: 890px) {
+    .options-panel{
+        .volume-container{
+            width: calc(50% - 20px);
+        }
+        .going-back-button{
+            width: calc(50% - 20px);
+        }
+    }
+}
+@media screen and (max-width: 620px) {
+    .options-panel{
+        .volume-container{
+            width: calc(80% - 20px);
+        }
+    }
+}
+@media screen and (max-width: 420px) {
+    .options-panel{
+        .going-back-button{
+            width: calc(80% - 20px);
+        }
+    }
+}

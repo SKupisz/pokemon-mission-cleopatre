@@ -144,6 +144,8 @@
                 width: 160px;
                 height: 160px;
                 border-radius: 50%;
+                filter: brightness(80%);
+                transition: all 0.2s;
             }
             .second-surrounding{
                 background: red;
@@ -152,8 +154,7 @@
                 background: dodgerblue;
             }
             .highlighted{
-                transition: all 0.2s;
-                filter: brightness(140%);
+                filter: brightness(120%);
             }
         }
         .first-container{

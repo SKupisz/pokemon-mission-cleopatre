@@ -4,6 +4,7 @@ import SwiperCore, { Navigation } from 'swiper/core';
 
 import ChoosingGameMode from "./menuHelpers/choosingGameMode.jsx";
 import MenuMusic from "./menuHelpers/menuMusic.jsx";
+import OptionsPanel from "./menuHelpers/optionsPanel.jsx";
 import Main from "./Main.jsx";
 
 import snoopdogg from "../music/asterix_i_obelix.mp3";
@@ -21,6 +22,8 @@ export default class Menu extends React.Component{
         this.fightingMusicRef = React.createRef();
         this.menuMusicRef = React.createRef();
 
+        this.optionsPanelVolumeRef = React.createRef();
+
         this.state = {
             gameMode: 0, // 1 - single player, 2 - two players
             gamePhase: -1, // phases: 0 - first menu, 1 - first gamer choose, 2 - second gamer choose, 3 - AI choose, 4 - fight
@@ -28,7 +31,10 @@ export default class Menu extends React.Component{
             chosenCharacterFirst: 0,
             chosenCharacterSecond: 0,
             currentMusicVolume: 1.0,
-            whichMusicPlaying: true
+            whichMusicPlaying: true,
+            ifPanelOn: false,
+            currentVolumePredictor: 1.0,
+            currentBrightnessPredictor: 100
         };
         this.fighters = require("../data/fighters.json");
         this.characters = this.fighters["fighters"];
@@ -37,6 +43,8 @@ export default class Menu extends React.Component{
         this.erasingTheVolume = this.erasingTheVolume.bind(this);
         this.goBack = this.goBack.bind(this);
         this.fallBackALevel = this.fallBackALevel.bind(this);
+        this.launchOptionsPanel = this.launchOptionsPanel.bind(this);
+        this.readNewPredictor = this.readNewPredictor.bind(this);
     }
     chooseGameMode(option){
         this.setState({
@@ -66,14 +74,12 @@ export default class Menu extends React.Component{
                     aiOruser: 1
                 }, () => {
                     if(this.state.gamePhase === 4){
-                        this.erasingTheVolume(1.0);
+                        this.erasingTheVolume(1.0*this.state.currentVolumePredictor);
                     }
                 });
             }
             if(this.state.gamePhase === 4){
-                for(let i = 1.0; i >=0.0; i-=0.1){
-                    this.erasingTheVolume(1.0);
-                }
+                this.erasingTheVolume(1.0*this.state.currentVolumePredictor);
             }
         });
     }
@@ -83,13 +89,13 @@ export default class Menu extends React.Component{
                 currentMusicVolume: i
             }, () =>{
                 setTimeout(() => {
-                    this.erasingTheVolume(i-0.05);
+                    this.erasingTheVolume(i-(0.05*this.state.currentVolumePredictor));
                 }, 150);
             });
         }
         else{
             this.setState({
-                currentMusicVolume: 0.8,
+                currentMusicVolume: 0.8*this.state.currentVolumePredictor,
                 whichMusicPlaying: false
             }, () => {
                 this.menuMusicRef.current.stop();
@@ -103,7 +109,7 @@ export default class Menu extends React.Component{
                 gamePhase: 1,
                 chosenCharacterFirst: 0,
                 chosenCharacterSecond: 0,
-                currentMusicVolume: 1.0,
+                currentMusicVolume: 1.0*this.state.currentVolumePredictor,
                 whichMusicPlaying: true
             }, () => {});
         }
@@ -113,7 +119,7 @@ export default class Menu extends React.Component{
                 gamePhase: 0,
                 chosenCharacterFirst: 0,
                 chosenCharacterSecond: 0,
-                currentMusicVolume: 1.0,
+                currentMusicVolume: 1.0*this.state.currentVolumePredictor,
                 whichMusicPlaying: true
             }, () => {});
         }
@@ -124,16 +130,34 @@ export default class Menu extends React.Component{
             gamePhase: this.state.gamePhase-1
         }, () => {});
     }
+    launchOptionsPanel(){
+        this.setState({
+            ifPanelOn: !this.state.ifPanelOn
+        }, () => {});
+    }
+    readNewPredictor(predictorName, newPredictorValue){
+        let toPass = {};
+        toPass[predictorName] = newPredictorValue;
+        this.setState(toPass, () => {});
+    }
     componentDidMount(){
         this.setState({
             gamePhase: 0
         }, () => {});
     }
     render(){
-        return <div>
+        return <div style = {{
+            filter: "brightness("+this.state.currentBrightnessPredictor+"%)"
+        }}>
             <MenuMusic
-                source1 = {[snoopdogg, this.state.currentMusicVolume, this.state.whichMusicPlaying, this.menuMusicRef]}
-                source2 = {[fighting, this.state.currentMusicVolume, !this.state.whichMusicPlaying, this.fightingMusicRef]}/>
+                source1 = {[snoopdogg, this.state.currentMusicVolume*this.state.currentVolumePredictor, this.state.whichMusicPlaying, this.menuMusicRef]}
+                source2 = {[fighting, this.state.currentMusicVolume*this.state.currentVolumePredictor, !this.state.whichMusicPlaying, this.fightingMusicRef]}/>
+            <button className={this.state.gamePhase >= 1 ? "go-backBtn options-btn good-phase-for-options" : "go-backBtn options-btn"} onClick = {() => {this.launchOptionsPanel()}}>⚙️</button>
+            {this.state.ifPanelOn === true ? <OptionsPanel goingBackFunction = {this.launchOptionsPanel} 
+            defaultVolumeValue = {this.state.currentVolumePredictor}
+            onVolumeChange = {this.readNewPredictor}
+            defaultBrightnessValue = {this.state.currentBrightnessPredictor}
+            onBrightnessChange = {this.readNewPredictor}/> : ""}
             {this.state.gamePhase === 0 ? <ChoosingGameMode chooseGameMode = {this.chooseGameMode}/> 
         : (this.state.gamePhase === 1 || this.state.gamePhase === 2)? <div className="menu-container next-phase">
             <button className="go-backBtn" onClick = {() => {this.fallBackALevel()}}>⬅</button>
