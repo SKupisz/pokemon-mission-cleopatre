@@ -1,41 +1,4 @@
-@keyframes gameIntro {
-    0%{
-        width: 0;
-    }
-    100%{
-        width: 50%;
-    }
-}
-@keyframes gameIntroRWD {
-    0%{
-        width: 0;
-    }
-    100%{
-        width: 100%;
-    }
-}
-@keyframes introAnimation {
-    0%{
-        opacity: 1;
-    }
-    100%{
-        opacity: 0;
-        visibility: hidden;
-        width: 0;
-        height: 0;
-        overflow: hidden;
-    }
-}
-@keyframes gameGoingOn {
-    0%{
-        visibility: visible;
-        opacity: 0;
-    }
-    100%{
-        opacity: 1;
-        visibility: visible;
-    }
-}
+@import "./gameKeyframes.scss";
 .game-container{
     width: 100%;
     height: 100vh;
@@ -87,16 +50,17 @@
 }
 .main-game{
     width: 100%;
-    height: 100%;
+    height: 0%;
     visibility: hidden;
     animation-name: gameGoingOn;
     animation-duration: 0.5s;
     animation-delay: 3s;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
+    overflow-y: hidden;
     .gamer-level{
         width: calc(100% - 20px);
-        height: 50%;
+        height: calc(50% - 20px);
         padding: 10px;
         .stats{
             float: left;

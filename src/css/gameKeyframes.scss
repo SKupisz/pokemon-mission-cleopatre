@@ -1,0 +1,41 @@
+@keyframes gameIntro {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 50%;
+    }
+}
+@keyframes gameIntroRWD {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 100%;
+    }
+}
+@keyframes introAnimation {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        visibility: hidden;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+    }
+}
+@keyframes gameGoingOn {
+    0%{
+        visibility: hidden;
+        opacity: 0;
+        overflow-y: hidden;
+    }
+    100%{
+        opacity: 1;
+        visibility: visible;
+        height: 100%;
+        overflow-y: auto;
+    }
+}
