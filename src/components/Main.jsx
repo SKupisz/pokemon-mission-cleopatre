@@ -18,7 +18,8 @@ export default class Main extends React.Component{
                 currSta: this.fightersGeneralData["fighters"][this.props.secondGamer]["stats"]["sta"],
                 maxSta: this.fightersGeneralData["fighters"][this.props.secondGamer]["stats"]["sta"],
                 specialAttackPoints: 0,
-                sex: this.fightersGeneralData["fighters"][this.props.secondGamer]["sex"]
+                sex: this.fightersGeneralData["fighters"][this.props.secondGamer]["sex"],
+                movingClasses: ""
             },
             firstGamerStatus: {
                 currHp: this.fightersGeneralData["fighters"][this.props.firstGamer]["stats"]["hp"],
@@ -26,7 +27,8 @@ export default class Main extends React.Component{
                 currSta: this.fightersGeneralData["fighters"][this.props.firstGamer]["stats"]["sta"],
                 maxSta: this.fightersGeneralData["fighters"][this.props.firstGamer]["stats"]["sta"],
                 specialAttackPoints: 0,
-                sex: this.fightersGeneralData["fighters"][this.props.firstGamer]["sex"]
+                sex: this.fightersGeneralData["fighters"][this.props.firstGamer]["sex"],
+                movingClasses: ""
             },
             firstGamerAttacks: this.fightersGeneralData["fighters"][this.props.firstGamer]["skills"],
             secondGamerAttacks: this.fightersGeneralData["fighters"][this.props.secondGamer]["skills"],
@@ -172,6 +174,7 @@ export default class Main extends React.Component{
             }
         }
         if(operand[1] === "user"){
+            final["movinClasses"] = "user-healed";
             if(this.state.currentTurn === 1){
                 this.setState({
                     firstGamerStatus: final
@@ -184,6 +187,7 @@ export default class Main extends React.Component{
             }
         }
         else{
+            final["movinClasses"] = "user-attacked";
             if(this.state.currentTurn === 1){
                 this.setState({
                     secondGamerStatus: final
@@ -233,7 +237,8 @@ export default class Main extends React.Component{
                     "image block-center "+this.fightersGeneralData["fighters"][this.props.secondGamer]["photoClassName"]]}/>
                     <LevelRendering levelClasses = "first-gamer-level gamer-level" 
                     gamerStatsBlock = {[this.state.firstGamerStatus, "stats first-stats"]}
-                    gamerImage = {[this.state.currentTurn === 1 ? "image-surrounding first-surrounding block-center highlighted" : "image-surrounding first-surrounding block-center",
+                    gamerImage = {[this.state.currentTurn === 1 ? "image-surrounding first-surrounding block-center highlighted "+this.state.firstGamerStatus["movingClasses"] : 
+                    "image-surrounding first-surrounding block-center "+this.state.firstGamerStatus["movingClasses"],
                     "image block-center "+this.fightersGeneralData["fighters"][this.props.firstGamer]["photoClassName"]]}/>
                 </div>
                 <div className={this.state.currentTurn === 1 ? "steering first-gamer" : "steering second-gamer"}>

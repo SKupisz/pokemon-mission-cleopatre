@@ -152,6 +152,12 @@ export default class Menu extends React.Component{
             <MenuMusic
                 source1 = {[snoopdogg, this.state.currentMusicVolume*this.state.currentVolumePredictor, this.state.whichMusicPlaying, this.menuMusicRef]}
                 source2 = {[fighting, this.state.currentMusicVolume*this.state.currentVolumePredictor, !this.state.whichMusicPlaying, this.fightingMusicRef]}/>
+                        <button className={this.state.gamePhase >= 1 ? "go-backBtn options-btn good-phase-for-options" : "go-backBtn options-btn"} onClick = {() => {this.launchOptionsPanel()}}>⚙️</button>
+            {this.state.ifPanelOn === true ? <OptionsPanel goingBackFunction = {this.launchOptionsPanel} 
+            defaultVolumeValue = {this.state.currentVolumePredictor}
+            onVolumeChange = {this.readNewPredictor}
+            defaultBrightnessValue = {this.state.currentBrightnessPredictor}
+            onBrightnessChange = {this.readNewPredictor}/> : ""}
             {this.state.gamePhase === 0 ? <ChoosingGameMode chooseGameMode = {this.chooseGameMode}/> 
         : (this.state.gamePhase === 1 || this.state.gamePhase === 2)? <div className="menu-container next-phase">
             <button className="go-backBtn" onClick = {() => {this.fallBackALevel()}}>⬅</button>
@@ -186,9 +192,4 @@ export default class Menu extends React.Component{
             secondGamer = {this.state.chosenCharacterSecond} goBack = {this.goBack}/> : ""}</div>
     }
 }
-/*            <button className={this.state.gamePhase >= 1 ? "go-backBtn options-btn good-phase-for-options" : "go-backBtn options-btn"} onClick = {() => {this.launchOptionsPanel()}}>⚙️</button>
-            {this.state.ifPanelOn === true ? <OptionsPanel goingBackFunction = {this.launchOptionsPanel} 
-            defaultVolumeValue = {this.state.currentVolumePredictor}
-            onVolumeChange = {this.readNewPredictor}
-            defaultBrightnessValue = {this.state.currentBrightnessPredictor}
-            onBrightnessChange = {this.readNewPredictor}/> : ""}*/
+/**/
