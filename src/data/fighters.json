@@ -20,14 +20,14 @@
             "photoClassName": "obelix",
             "stats": {
                 "hp": 154,
-                "sta": 132
+                "sta": 128
             },
             "sex": "m",
             "skills": [
                 ["Kto tu jest gruby?", "enemy", "-2HP", 2.5], 
                 ["Dzik power", "user", "+8HP", 8], 
-                ["Dżem langusty", "enemy", "-20HP", 25], 
-                ["Utszebe", "enemy", "-11HP", 11.75]
+                ["Dżem langusty", "enemy", "-15HP", 18.75], 
+                ["Utszebe", "enemy", "-9HP", 11.25]
             ]
         },
         {
