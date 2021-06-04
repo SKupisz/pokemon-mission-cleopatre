@@ -33,7 +33,7 @@ export default class Menu extends React.Component{
             currentMusicVolume: 1.0,
             whichMusicPlaying: true,
             ifPanelOn: false,
-            currentVolumePredictor: 1.0,
+            currentVolumePredictor: 0,
             currentBrightnessPredictor: 100,
             defaultGamersMenuColors: [["#1e90ff","f2"],["#ff0a0a","e6"]],
             currentGamersMenuColors: [["#1e90ff","f2"],["#ff0a0a","e6"]]
