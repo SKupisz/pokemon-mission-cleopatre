@@ -34,7 +34,9 @@ export default class Menu extends React.Component{
             whichMusicPlaying: true,
             ifPanelOn: false,
             currentVolumePredictor: 1.0,
-            currentBrightnessPredictor: 100
+            currentBrightnessPredictor: 100,
+            defaultGamersMenuColors: [["#1e90ff","f2"],["#ff0a0a","e6"]],
+            currentGamersMenuColors: [["#1e90ff","f2"],["#ff0a0a","e6"]]
         };
         this.fighters = require("../data/fighters.json");
         this.characters = this.fighters["fighters"];
@@ -135,9 +137,15 @@ export default class Menu extends React.Component{
             ifPanelOn: !this.state.ifPanelOn
         }, () => {});
     }
-    readNewPredictor(predictorName, newPredictorValue){
-        let toPass = {};
-        toPass[predictorName] = newPredictorValue;
+    readNewPredictor(predictorName, newPredictorValue, ind){
+        let toPass = {};    
+        if(typeof ind === "undefined") {
+            toPass[predictorName] = newPredictorValue;
+        }
+        else {
+            toPass[predictorName] = this.state[predictorName];
+            toPass[predictorName][ind][0] = newPredictorValue;
+        }
         this.setState(toPass, () => {});
     }
     componentDidMount(){
@@ -155,9 +163,10 @@ export default class Menu extends React.Component{
                         <button className={this.state.gamePhase >= 1 ? "go-backBtn options-btn good-phase-for-options" : "go-backBtn options-btn"} onClick = {() => {this.launchOptionsPanel()}}>⚙️</button>
             {this.state.ifPanelOn === true ? <OptionsPanel goingBackFunction = {this.launchOptionsPanel} 
             defaultVolumeValue = {this.state.currentVolumePredictor}
-            onVolumeChange = {this.readNewPredictor}
             defaultBrightnessValue = {this.state.currentBrightnessPredictor}
-            onBrightnessChange = {this.readNewPredictor}/> : ""}
+            gamersColors = {this.state.currentGamersMenuColors}
+            gamersDefaultColors = {this.state.defaultGamersMenuColors}
+            readStateFunction = {this.readNewPredictor}/> : ""}
             {this.state.gamePhase === 0 ? <ChoosingGameMode chooseGameMode = {this.chooseGameMode}/> 
         : (this.state.gamePhase === 1 || this.state.gamePhase === 2)? <div className="menu-container next-phase">
             <button className="go-backBtn" onClick = {() => {this.fallBackALevel()}}>⬅</button>
@@ -189,7 +198,7 @@ export default class Menu extends React.Component{
                 
             </section>
         </div> : this.state.gamePhase === 4 ? <Main gameType = {this.state.gameMode} firstGamer = {this.state.chosenCharacterFirst}
-            secondGamer = {this.state.chosenCharacterSecond} goBack = {this.goBack}/> : ""}</div>
+            secondGamer = {this.state.chosenCharacterSecond} goBack = {this.goBack} gamersColors = {this.state.currentGamersMenuColors}/> : ""}</div>
     }
 }
 /**/

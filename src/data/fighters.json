@@ -202,12 +202,27 @@
                 "hp": 120,
                 "sta": 115
             },
-            "sex": "m",
+            "sex": "k",
             "skills": [
                 ["Widać mnie", "enemy", "-8HP", 10], 
                 ["Nie widać", "enemy", "-3Sta", 3.75], 
                 ["Trochę widać", "enemy", "-10HP", 12.5],
                 ["Chłop z jajami", "user", "+4Sta, +4HP", 9]
+            ]
+        },
+        {
+            "name": "Kupiec Kupis",
+            "photoClassName": "kupis",
+            "stats": {
+                "hp": 110,
+                "sta": 125
+            },
+            "sex": "m",
+            "skills": [
+                ["Jeszcze, jeszcze", "enemy", "-5Sta", 6.25],
+                ["Łachbete!", "enemy", "-9HP", 11.25], 
+                ["Do nilu!", "enemy", "-4HP", 5],
+                ["Już nie...", "user", "+4Sta, -4HP", 9]
             ]
         }
     ]

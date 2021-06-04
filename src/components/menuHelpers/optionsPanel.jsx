@@ -7,6 +7,8 @@ import VolumeOff from "@material-ui/icons/VolumeOff";
 import VolumeUp from "@material-ui/icons/VolumeUp";
 import BrightnessLowIcon from '@material-ui/icons/BrightnessLow';
 import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
+import InputBase from "@material-ui/core/InputBase";
+import Button from "@material-ui/core/Button";
 
 
 export default class OptionsPanel extends React.Component{
@@ -24,7 +26,7 @@ export default class OptionsPanel extends React.Component{
                         <Slider value = {this.props.defaultVolumeValue} 
                         min={0.0} max = {1.0} step = {0.01} key = {"volumeSlider"}
                         aria-labelledby="continuous-slider" className = "slider"
-                        onChange = {(event,newValue) => {this.props.onVolumeChange("currentVolumePredictor",newValue)}}/>
+                        onChange = {(event,newValue) => {this.props.readStateFunction("currentVolumePredictor",newValue)}}/>
                     </Grid>
                     <Grid item>
                         <VolumeUp className = "volume-item"/>
@@ -43,10 +45,27 @@ export default class OptionsPanel extends React.Component{
                         <Slider value = {this.props.defaultBrightnessValue} 
                         min={0} max = {100} step = {1} key = {"brightnessSlider"}
                         aria-labelledby="continuous-slider" className = "slider"
-                        onChange = {(event,newValue) => {this.props.onBrightnessChange("currentBrightnessPredictor", newValue)}}/>
+                        onChange = {(event,newValue) => {this.props.readStateFunction("currentBrightnessPredictor", newValue)}}/>
                     </Grid>
                     <Grid item>
                         <BrightnessHighIcon className = "volume-item"/>
+                    </Grid>
+                </Grid>
+            </div>
+            <div className="volume-container gamers-colors-container block-center">
+                <Typography gutterBottom className="option-name">Kolory paneli graczy</Typography>
+                <Grid container spacing={2} className = "colors-grid block-center">
+                    <Grid item sm={6}>
+                        <InputBase type = "color" value = {this.props.gamersColors[0][0]} 
+                        onChange = {(event) => {this.props.readStateFunction("currentGamersMenuColors", event.target.value, 0)}} className = "color-input"/>
+                    </Grid>
+                    <Grid item sm={6}>
+                        <InputBase type = "color" value = {this.props.gamersColors[1][0]} 
+                        onChange = {(event) => {this.props.readStateFunction("currentGamersMenuColors", event.target.value, 1)}} className = "color-input"/>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Button type = "button" className = "reset-colors-btn block-center"
+                        onClick = {() => {this.props.readStateFunction("currentGamersMenuColors",this.props.gamersDefaultColors)}}>Reset</Button>
                     </Grid>
                 </Grid>
             </div>

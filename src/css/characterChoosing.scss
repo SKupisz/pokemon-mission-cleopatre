@@ -3,7 +3,7 @@
         margin-bottom: 5vh;
     }
 }
-$characters: "asterix" "obelix" "marnypopis" "cezar" "panoramix" "ceplus" "numernabis" "cleopatra" "nikosis" "otis" "redbeard" "idea" "pyradonis" "harimatis";
+$characters: "asterix" "obelix" "marnypopis" "cezar" "panoramix" "ceplus" "numernabis" "cleopatra" "nikosis" "otis" "redbeard" "idea" "pyradonis" "harimatis" "kupis";
 @for $i from 1 to length($characters)+1 {
     .#{nth($characters,$i)}{
         background: url(#{"../img/"+nth($characters,$i)+".jpg"});

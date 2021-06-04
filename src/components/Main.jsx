@@ -258,7 +258,9 @@ export default class Main extends React.Component{
                     "image-surrounding first-surrounding block-center "+this.state.firstGamerStatus["movingClasses"],
                     "image block-center "+this.fightersGeneralData["fighters"][this.props.firstGamer]["photoClassName"]]}/>
                 </div>
-                <div className={this.state.currentTurn === 1 ? "steering first-gamer" : "steering second-gamer"}>
+                <div className="steering" style = {{
+                    backgroundColor: this.state.currentTurn === 1 ? this.props.gamersColors[0][0]+this.props.gamersColors[0][1] : this.props.gamersColors[1][0]+this.props.gamersColors[1][1]
+                }}>
                     <header className = "steering-turn block-center">Tura gracza {this.state.currentTurn === 1 ? 1 : 2}</header>
                     {
                         this.props.gameType === 1 && this.state.currentTurn === -1 ? "" : <span>
