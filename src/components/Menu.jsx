@@ -25,15 +25,15 @@ export default class Menu extends React.Component{
         this.optionsPanelVolumeRef = React.createRef();
 
         this.state = {
-            gameMode: 0, // 1 - single player, 2 - two players
+            gameMode: 1, // 1 - single player, 2 - two players
             gamePhase: -1, // phases: 0 - first menu, 1 - first gamer choose, 2 - second gamer choose, 3 - AI choose, 4 - fight
             aiOruser: 0,
             chosenCharacterFirst: 0,
-            chosenCharacterSecond: 0,
+            chosenCharacterSecond: 2,
             currentMusicVolume: 1.0,
             whichMusicPlaying: true,
             ifPanelOn: false,
-            currentVolumePredictor: 1.0,
+            currentVolumePredictor: 0,
             currentBrightnessPredictor: 100,
             defaultGamersMenuColors: [["#1e90ff","f2"],["#ff0a0a","e6"]],
             currentGamersMenuColors: [["#1e90ff","f2"],["#ff0a0a","e6"]]
@@ -150,7 +150,7 @@ export default class Menu extends React.Component{
     }
     componentDidMount(){
         this.setState({
-            gamePhase: 0
+            gamePhase: 4
         }, () => {});
     }
     render(){

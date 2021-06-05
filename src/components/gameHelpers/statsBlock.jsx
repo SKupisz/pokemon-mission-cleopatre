@@ -14,6 +14,7 @@ const StatsBlock = ({gamerData, wrapperClass}) => {
     return <div className={wrapperClass}>
         <div className="stats-elem health block-center">❤ {gamerData["currHp"]+" / "+gamerData["maxHp"]}</div>
         <div className="stats-elem stamina block-center">💪🏻 {gamerData["currSta"]+" / "+gamerData["maxSta"]}</div>
+        <div className="stats-elem stamina block-center">🏥 {gamerData["specialAttackPoints"]}</div>
         <div className="stats-elem character-info block-center">
             {info}
         </div>

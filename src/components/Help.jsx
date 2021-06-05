@@ -48,7 +48,7 @@ export default class Help extends React.Component{
                         <header className="sub-header block-center">Rozgrywka</header>
                         <section className="game-describe block-center">
                             W trakcie gry gracz ma do dyspozycji 6 ruchów: 4 ataki wybranej przez niego postaci, ruch "pomiń" (premia do staminy za odpoczynek) i ruch "poddaj się", skutkujący zwycięstwem przeciwnika.
-                            Zadaniem gracza jest zabrać przeciwnikowi wszystkie punkty HP.
+                            Zadaniem gracza jest zabrać przeciwnikowi wszystkie punkty HP. Ponadto każdy atak przynosi punkty SuperStaminy, które można potem wydać na leczenie postaci.
                         </section>
                     </div>
                 </SwiperSlide>
