@@ -224,6 +224,21 @@
                 ["Do nilu!", "enemy", "-4HP", 5],
                 ["Już nie...", "user", "+4Sta, -4HP", 9]
             ]
+        },
+        {
+            "name": "Gimikis",
+            "photoClassName": "gimikis",
+            "stats": {
+                "hp": 120,
+                "sta": 120
+            },
+            "sex": "k",
+            "skills": [
+                ["Warkocz mocy", "enemy", "-9HP", 11.25],
+                ["Oszołomienie", "enemy", "-8Sta", 10], 
+                ["Chodź, mój galu", "enemy", "-6HP", 7.5],
+                ["Pochlebienie", "user", "+6Sta, +2HP", 9]
+            ]
         }
     ]
 }
