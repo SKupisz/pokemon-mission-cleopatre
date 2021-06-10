@@ -210,6 +210,7 @@ export default class Main extends React.Component{
                 }, () => {
                     let finalOperand = this.state.firstGamerStatus;
                     finalOperand["currSta"]-=operand[3];
+                    if(finalOperand["currSta"] < 0) finalOperand["currSta"] = 0;
                     if(ifAttack) finalOperand["specialAttackPoints"]+=countSpecialPoints;
                     this.setState({
                         firstGamerStatus: finalOperand
@@ -222,7 +223,8 @@ export default class Main extends React.Component{
                 }, () => {
                     let finalOperand = this.state.secondGamerStatus;
                     finalOperand["currSta"]-=operand[3];
-                    finalOperand["specialAttackPoints"]+=countSpecialPoints;
+                    if(finalOperand["currSta"] < 0) finalOperand["currSta"] = 0;
+                    if(ifAttack) finalOperand["specialAttackPoints"]+=countSpecialPoints;
                     this.setState({
                         secondGamerStatus: finalOperand
                     }, () => {this.nextTurn(true);});
